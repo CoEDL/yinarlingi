@@ -2,7 +2,8 @@ Package: yinarlingi
 Type: Package
 Title: Validation Functions for the Warlpiri Dictionary
 Version: 0.1.0
-Author: Who wrote it
+Authors@R: c(person("Nay", "San", role = c("aut", "cre"),
+                     email = "nay.san@anu.edu.au"))
 Maintainer: Nay San <nay.san@anu.edu.au>
 Description: Set of data testing and processing functions used by the Warlpiri Dictionary Project.
 License: MIT + file LICENSE
@@ -19,3 +20,5 @@ Imports:
     stringr
 Remotes: coedl/tidylex
 RoxygenNote: 6.0.1
+URL: https://github.com/coedl/yinarlingi
+BugReports: https://github.com/coedl/yinarlingi/issues

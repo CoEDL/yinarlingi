@@ -1,0 +1,8 @@
+pandoc: 2.1.2
+pkgdown: 1.0.0
+pkgdown_sha: ~
+articles: []
+urls:
+  reference: https://coedl.github.io/tidylex/reference
+  article: https://coedl.github.io/tidylex/articles
+

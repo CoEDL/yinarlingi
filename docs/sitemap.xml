@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://coedl.github.io/tidylex/index.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/add_wlp_groups.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/read_wlp_lexicon.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/skeletonise_df.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_code1_ordered.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_inline_codes_ok.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_xrefs_homed.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/use_wlp_regex.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/view_wlp_reversals.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/yinarlingi.html</loc>
+  </url>
+</urlset>

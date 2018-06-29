@@ -1,0 +1,25 @@
+\me jampaly(pa) (N) (PV): (La,Wi,Y)
+\dm spatial: tactile: \edm
+\gl sharp, pointed \egl
+\rv sharp \erv
+\eg
+\we Karlangu ka karri jampalypa ngulaju yiri-nyayirni. \[@@]
+\et The digging stick is sharp, that is very sharp pointed. \ewe
+\eeg
+\ant jampilypa, munju \eant
+\cf jaarn-karri-mi, lirra jampalypa \ecf
+\syn jalkarra, larrilpi, yiri \esyn
+\eme
+\sse jampaly-pi-nyi (V):
+\def xERG cause y to come to be sharp (<jampalypa>) \edef
+\gl sharpen, trim to ^point \egl
+\rv sharpen \erv
+\eg
+\we Jampaly-pungulpalu wangkinypa, yangka kuja munju-jarrija. \[@@]
+\et They sharpened the stone-axe which had became blunt. \ewe
+\we Karlangulu jampalypa-pungu. \[Tiger Jakamarra]
+\et They sharpened the points of the digging sticks. \ewe
+\eeg
+\csl YSL#1336, YSL#313 \ecsl
+\syn yiri-ma-ni \esyn
+\esse
