@@ -1,0 +1,21 @@
+Package: yinarlingi
+Type: Package
+Title: Validation Functions for the Warlpiri Dictionary
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: Nay San <nay.san@anu.edu.au>
+Description: Set of data testing and processing functions used by the Warlpiri Dictionary Project.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:
+    tidylex,
+    dplyr,
+    stringr,
+    tidyr
+Imports:
+    purrr,
+    readr,
+    stringr
+Remotes: coedl/tidylex
+RoxygenNote: 6.0.1

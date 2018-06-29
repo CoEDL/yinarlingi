@@ -1,0 +1,205 @@
+---
+title: "Warlpiri dictionary test suite"
+date: "Generated `r format(Sys.time(), '%H:%M, %d %B, %Y')`"
+output: 
+  html_document: 
+    toc: yes
+params:
+   lexicon_path: "~/git-repos/coedl/warlpiri-2018/src/wlp-lexicon_master.txt"
+   CI_ENV: false
+---
+
+```{r setup, include=FALSE}
+library(yinarlingi)
+library(purrr)
+library(knitr)
+
+# Set global knitr options
+opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+
+# Helper functions for pretty printing
+escape_md <- . %>%
+    str_replace_all("\\\\", "\\\\\\\\") %>% 
+    str_replace_all("\\^", "\\\\^") %>%
+    str_replace_all("\\*", "\\\\*")
+
+kable_escaped <- . %>%
+    mutate_if(is.character, funs(escape_md)) %>%
+    kable()
+
+prettify_data_col <- . %>%
+    mutate(data = str_trunc(data, width = 50, ellipsis = "\t..."))
+
+# Read in data
+
+skeleton_grammar <-
+    system.file("structures/wlp_skeleton-simple.ne", package = "yinarlingi") %>%
+    readLines()
+
+wlp_code_defs <-
+    readr::read_csv(
+        file      = system.file("structures/wlp_code-definitions.csv", package = "yinarlingi"),
+        col_types = "ccc"
+    )
+
+wlp_df <-
+    read_wlp_lexicon(params$lexicon_path)
+
+test_df <-
+    skeletonise_df(wlp_df)
+
+# Coverage = lines in skeleton / lines in raw data
+cov_pc <-
+    `/`(
+        test_df %>% nrow(),
+        wlp_df %>% filter(!is.na(code1)) %>% nrow()
+    ) %>%
+    `*`(100) %>%
+    round(digits = 2)
+
+strays_df <-
+    wlp_df %>%
+    filter(!is.na(code1), !code1 %in% wlp_code_defs$code1)
+
+test_results <-
+    list(
+        "syntax_ok"  = . %>% test_code1_ordered %>% group_by(me_start) %>% tidyr::nest(),
+        "inline_ok"  = . %>% test_inline_codes_ok %>% ungroup %>% prettify_data_col,
+        "xrefs_ok"   = . %>% test_xrefs_homed %>% prettify_data_col
+    ) %>%
+    map(~ .(test_df))
+
+test_status <-
+    test_results %>%
+    map(~ ifelse(nrow(.) == 0, "passing", "failing"))
+
+```
+
+<span class="badge tag">tests</span>`r ifelse(all(test_status == "passing"), '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>')`
+
+# About
+
+To do
+
+## Defined codes
+
+```{r Show codes}
+kable(wlp_code_defs)
+```
+
+
+## Skeleton grammar
+
+```{r Show grammar, comment=''}
+cat(skeleton_grammar, sep = '\n')
+```
+
+
+# Diagnostics
+
+## Coverage (`r cov_pc`%)
+
+```{r Show coverage statistics}
+residual_codes <-
+    wlp_df %>%
+    filter(!code1 %in% unique(test_df$code1)) %>%
+    pull(code1) %>%
+    unique() %>%
+    sort()
+
+```
+
+The current skeleton grammar covers `r cov_pc`% of the raw dictionary data. The residual codes current unprocessed are:
+`r residual_codes`
+
+# Within-line tests
+
+The tests within this section operate on individual lines
+
+## Test that there are no stray codes (`r ifelse(nrow(strays_df) == 0, "passing", "failing")`)
+
+**Common issues**:
+
+Valid end codes (e.g. `edm`, `ewe`) appear in the strays list. These codes appear as stray because they technically are not valid as `code1` codes, i.e. the first code from the left-edge of the line. They should be placed as a 2nd, ending code to a previous line, e.g. (note that `dm` is the left-most code, not `edm`):
+    <pre>\dm ... (\edm should go here)
+<b>\edm</b></pre>
+
+
+```{r Show stray codes}
+kable_escaped(strays_df)
+```
+
+
+`ewe` appears as a left-most code, thus considered 'stray'. Note that the end example codes, `ewe` or `ewe` should appear on the English translation line, i.e. `\et ... \ewe` or `\et ... \ewed`
+
+## Test that only expected backslash codes appear in each line (`r test_status$inline_ok`)
+
+Description of test here
+
+```{r Show inline codes validity results}
+kable_escaped(test_results$inline_ok)
+```
+
+## Test that there are no orphaned cross-references (`r test_status$xrefs_ok`)
+
+```{r Show orphaned cross-references}
+kable_escaped(test_results$xrefs_ok)
+```
+
+# Between-line tests
+
+These tests 
+
+## Test that code sequence within an entry follows expected structure (`r test_status$syntax_ok`)
+
+```{r Show current grammar, comment=''}
+cat(skeleton_grammar, sep = '\n')
+```
+
+
+```{r Show code ordering validity results}
+test_results$syntax_ok %>%
+    mutate(failing_line = map_int(data, ~ filter(., code1_ok == FALSE) %>% pull(line))) %>%
+    unnest(data,.drop = FALSE) %>%
+    filter(line >= failing_line - 3, line <= failing_line + 3) %>%
+    ungroup %>%
+    mutate(me_start = ifelse(duplicated(me_start), "", me_start)) %>%
+    prettify_data_col %>% 
+    select(-failing_line) %>%
+    kable_escaped()
+
+```
+
+
+<style type="text/css">
+h1 { font-size: 1.2em }
+h2 { font-size: 1.1em }
+.badge {
+    font-family: DejaVu Sans, Verdana, Geneva, sans-serif;
+    font-size: 11px;
+    color: white;
+}
+
+.badge.tag {
+    background-color: #4c4c4c;
+    padding: 2px 4px 3px 7px;
+    border-radius: 4px 0 0 4px;
+}
+
+.badge.value {
+    padding: 2px 7px 3px 4px;
+    border-radius: 0 4px 4px 0;
+}
+
+.badge.license {
+    background-color: #487;
+}
+
+.badge.build-passing {
+    background-color: #4b2;
+}
+
+.badge.build-failing {
+    background-color: #c54;
+}
+</style>
