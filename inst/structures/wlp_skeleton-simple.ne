@@ -16,5 +16,5 @@ exampleBlock    -> "eg" "cm":* examplePair:+ "eeg"
 
 examplePair     -> ("we" | "wed") "et"
 
-                   # Cross-refernces listed in alphabetical order
+                   # Cross-reference codes listed in alphabetical order
 crossRefs       -> "ant":? "cf":? "csl":? "pvl":? "syn":?
