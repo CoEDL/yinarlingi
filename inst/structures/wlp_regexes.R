@@ -43,18 +43,19 @@ wlp_regexes <- list(
     # 'jaal(pa) (PV): (Y)'         -> '(PV)'
     # 'jaaljaal(pa) (N) (PV): (Y)' -> '(N) (PV)'
     pos_chunk = stringr::regex("
-        (?<=\\s)            # space, positive look-behind
+        \\s                 # obligatory space!
         \\(                 # open parenthesis
         -?[A-Z]             # uppercase character, optionally prefixed with '-'
         .*?                 # anything (non-greedy)
         \\)                 # close parenthesis
-        (?=:)               # colon, positive look-ahead
+        :                   # obligatory colon!
       ", comments = TRUE),
 
     # '(PV)'     -> c('PV')
     # '(N) (PV)' -> c('N', 'PV')
     # '(N,V)'    -> c('N,V')
     pos_value = stringr::regex("
+        \\s                 # obligatory space!
         (?<=\\()            # open parenthesis, positive look-behind
         .*?                 # anything (non-greedy)
         (?=\\))             # close parenthesis, positive look-ahead

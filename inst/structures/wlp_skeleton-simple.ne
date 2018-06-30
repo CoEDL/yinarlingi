@@ -1,14 +1,14 @@
-mainEntry       ->   "me" entryBody "eme"  senseEntry:* subEntry:*
+mainEntry       ->   "me" entryBlock "eme"  senseEntry:* subEntry:*
 
-subEntry        ->  "sse" entryBody "esse" senseEntry:*
+subEntry        ->  "sse" entryBlock "esse" senseEntry:*
 
-senseEntry      ->   "se" entryBody "ese"
-                |   "sub" entryBody "esub"
+senseEntry      ->   "se" entryBlock "ese"
+                |   "sub" entryBlock "esub"
 
-paradigmExample ->  "pdx" entryBody "epdx"
-                |  "pdxs" entryBody "epdxs"
+paradigmExample ->  "pdx" entryBlock "epdx"
+                |  "pdxs" entryBlock "epdxs"
 
-entryBody       -> "org":? "dm":* "def":? "lat":? "gl":? "rv":? "cm":*
+entryBlock       -> "org":? "dm":* "def":? "lat":? "gl":? "rv":? "cm":*
                       (exampleBlock:+ | paradigmExample:+):?
                       crossRefs
 

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 The purpose of yinarlingi is to provide a set of convenience functions for validating Warlpiri dictionary data. Essentially, it pre-configures various functions from [tidylex](https://coedl.github.io/tidylex/) and [tidyverse](https://www.tidyverse.org/) packages with values specific to the Warlpiri dictionary data, so that those within the Warlpiri dictionary project can quickly run and re-run frequently used routines (e.g. data validation, derived views), and also so that these tests can be run in a Continuous Testing (CT) environment such as GitLab pipelines.
 
-Yinarlinigi is the Warlpiri word for echidna.
+Yinarlingi is a Warlpiri word for echidna.
 
 ## Installation
 

@@ -1,0 +1,38 @@
+value,description
+-COMP,Complementiser Suffix
+-V,Dependent Verb stem
+AUX:CLITIC,Auxiliary Clitic
+AUX:COMP,Auxiliary Complementiser
+AUX:PRON,Auxiliary Pronominal Clitic
+CASE,Case
+CONJ,Conjunction
+ENCL,Enclitic
+EXCL,Exclamatory marker
+INF,Infinitive Verb
+N,Nominal
+N-,Dependent Nominal stem
+N-DAT,Dative Case-marked Nominal
+N-DAT-SFX,Suffix on Dative Case-marked Nominal
+N-ERG,Ergative Case-marked Nominal
+N-LOC,Locative Case-marked Nominal
+N-SFX,Nominal Suffix
+Nc,Nominal of Cardinal direction subcategory
+Nc-SFX,Suffix on Nominal of Cardinal direction subcategory
+Nd,Nominal of Determiner subcategory
+Nd-SFX,Suffix on Nominal of Determiner subcategory
+Nk,Nominal of Kin subcategory
+Nk-,Dependent Kin Nominal stem
+Nk-SFX,Suffix on Kin Nominal
+Np,Nominal of Pronominal subcategory
+Np-SFX,Suffix on Nominal of Pronominal subcategory
+Nq,Nominal of Question/Quantifier subcategory
+Nq-ERG,Ergative Case-marked Nominal of Question/Quantifier subcategory
+Nt,Nominal of Temporal subcategory
+Prt,Particle
+PN,Proper noun
+POST,Post-position
+PV,Preverb
+SFX,Suffix
+V,Verb
+V-ENCL,Enclitic to Verb
+V-SFX,Suffix on Verb

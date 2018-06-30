@@ -12,6 +12,7 @@ LazyData: true
 Depends:
     tidylex,
     dplyr,
+    rmarkdown,
     stringr,
     tidyr
 Imports:

@@ -15,7 +15,7 @@ dictionary project can quickly run and re-run frequently used routines
 be run in a Continuous Testing (CT) environment such as GitLab
 pipelines.
 
-Yinarlinigi is the Warlpiri word for echidna.
+Yinarlingi is a Warlpiri word for echidna.
 
 ## Installation
 

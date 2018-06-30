@@ -7,12 +7,14 @@ output:
 params:
    lexicon_path: "~/git-repos/coedl/warlpiri-2018/src/wlp-lexicon_master.txt"
    CI_ENV: false
+   IN_SHINY: false
 ---
 
 ```{r setup, include=FALSE}
 library(yinarlingi)
 library(purrr)
 library(knitr)
+library(DT)
 
 # Set global knitr options
 opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
@@ -30,7 +32,13 @@ kable_escaped <- . %>%
 prettify_data_col <- . %>%
     mutate(data = str_trunc(data, width = 50, ellipsis = "\t..."))
 
+print_table <- function(df) if(params$IN_SHINY) kable_escaped(df) else datatable(df)
+
 # Read in data
+
+attrs_grammar <-
+    system.file("structures/wlp_block-attributes.ne", package = "yinarlingi") %>%
+    readLines()
 
 skeleton_grammar <-
     system.file("structures/wlp_skeleton-simple.ne", package = "yinarlingi") %>%
@@ -63,6 +71,8 @@ strays_df <-
 
 test_results <-
     list(
+        "pos_ok"     = test_pos_strings,
+        "attrs_ok"   = test_block_attributes,
         "syntax_ok"  = . %>% test_code1_ordered %>% group_by(me_start) %>% tidyr::nest(),
         "inline_ok"  = . %>% test_inline_codes_ok %>% ungroup %>% prettify_data_col,
         "xrefs_ok"   = . %>% test_xrefs_homed %>% prettify_data_col
@@ -71,7 +81,7 @@ test_results <-
 
 test_status <-
     test_results %>%
-    map(~ ifelse(nrow(.) == 0, "passing", "failing"))
+    map(~ ifelse(nrow(.) == 0, '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>'))
 
 ```
 
@@ -84,7 +94,7 @@ To do
 ## Defined codes
 
 ```{r Show codes}
-kable(wlp_code_defs)
+print_table(wlp_code_defs)
 ```
 
 
@@ -116,7 +126,7 @@ The current skeleton grammar covers `r cov_pc`% of the raw dictionary data. The 
 
 The tests within this section operate on individual lines
 
-## Test that there are no stray codes (`r ifelse(nrow(strays_df) == 0, "passing", "failing")`)
+## Test that there are no stray codes (`r ifelse(nrow(strays_df) == 0, '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>')`)
 
 **Common issues**:
 
@@ -126,7 +136,7 @@ Valid end codes (e.g. `edm`, `ewe`) appear in the strays list. These codes appea
 
 
 ```{r Show stray codes}
-kable_escaped(strays_df)
+if(nrow(strays_df) > 0) print_table(strays_df)
 ```
 
 
@@ -137,13 +147,41 @@ kable_escaped(strays_df)
 Description of test here
 
 ```{r Show inline codes validity results}
-kable_escaped(test_results$inline_ok)
+if(nrow(test_results$inline_ok) > 0) print_table(test_results$inline_ok)
+
 ```
+
+## Test that all parts of speech are valid (`r test_status$pos_ok`)
+
+### Table of valid parts of speech
+
+```{r}
+system.file("structures/wlp_values_parts-of-speech.csv", package = "yinarlingi") %>% read.csv() %>% datatable()
+```
+
+### Error lines (`r nrow(test_results$pos_ok)`)
+
+```{r}
+if(nrow(test_results$pos_ok) > 0) print_table(test_results$pos_ok)
+```
+
+## Test that all block attribute lines are well-formed (`r test_status$attrs_ok`)
+
+`\me`, `\sse`, `\se`, and `\sub` blocks may have a series of attributes listed, such as dialect, register, etc.
+
+```{r, comment=''}
+cat(attrs_grammar, sep = '\n')
+```
+
+```{r}
+if(nrow(test_results$attrs_ok) > 0) print_table(test_results$attrs_ok)
+```
+
 
 ## Test that there are no orphaned cross-references (`r test_status$xrefs_ok`)
 
 ```{r Show orphaned cross-references}
-kable_escaped(test_results$xrefs_ok)
+if(nrow(test_results$xrefs_ok) > 0) print_table(test_results$xrefs_ok)
 ```
 
 # Between-line tests
@@ -158,7 +196,8 @@ cat(skeleton_grammar, sep = '\n')
 
 
 ```{r Show code ordering validity results}
-test_results$syntax_ok %>%
+if(nrow(test_results$syntax_ok) > 0) {
+ test_results$syntax_ok %>%
     mutate(failing_line = map_int(data, ~ filter(., code1_ok == FALSE) %>% pull(line))) %>%
     unnest(data,.drop = FALSE) %>%
     filter(line >= failing_line - 3, line <= failing_line + 3) %>%
@@ -167,6 +206,7 @@ test_results$syntax_ok %>%
     prettify_data_col %>% 
     select(-failing_line) %>%
     kable_escaped()
+}
 
 ```
 
