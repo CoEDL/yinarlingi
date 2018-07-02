@@ -86,8 +86,9 @@ if(Sys.getenv("CI_ENV") == "GITLAB") {
     test_results %>%
         map_int(nrow) %>%
         sum() %>%
-        as.character() %>% 
-        writeLines("test_results.txt")
+        `>`(0) %>%
+        ifelse("failing", "passing") %>% 
+        writeLines("tests_status.txt")
 }
 ```
 
