@@ -1,6 +1,6 @@
 ---
 title: "Warlpiri dictionary test suite"
-date: 'Generated `r lubridate::force_tz(Sys.time(), tzone = "Australia/Sydney")`' AEST
+date: 'Generated `r lubridate::force_tz(Sys.time(), tzone = "Australia/Sydney")` AEST'
 output: 
   html_document: 
     toc: yes
