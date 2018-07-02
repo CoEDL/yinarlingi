@@ -81,7 +81,7 @@ test_status <-
     test_results %>%
     map(~ ifelse(nrow(.) == 0, '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>'))
 
-if(params$CI_ENV) {
+if(Sys.getenv("CI_ENV") == "GITLAB") {
     # if in GitLab CI pipelines
     test_results %>%
         map_int(nrow) %>%
