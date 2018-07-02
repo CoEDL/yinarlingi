@@ -1,12 +1,11 @@
 ---
 title: "Warlpiri dictionary test suite"
-date: 'Generated `r lubridate::force_tz(Sys.time(), tzone = "Australia/Sydney")`'
+date: 'Generated `r lubridate::force_tz(Sys.time(), tzone = "Australia/Sydney")`' AEST
 output: 
   html_document: 
     toc: yes
 params:
    lexicon_path: "~/git-repos/coedl/warlpiri-2018/src/wlp-lexicon_master.txt"
-   CI_ENV: `r Sys.getenv("CI_ENV") == "GITLAB"`
 ---
 
 ```{r setup, include=FALSE}
@@ -31,7 +30,7 @@ kable_escaped <- . %>%
 prettify_data_col <- . %>%
     mutate(data = str_trunc(data, width = 50, ellipsis = "\t..."))
 
-print_table <- function(df) if(params$IN_SHINY) kable_escaped(df) else datatable(df)
+print_table <- function(df) datatable(df)
 
 # Read in data
 
