@@ -1,6 +1,6 @@
 ---
 title: "Warlpiri dictionary test suite"
-date: 'Generated `r lubridate::now(tzone="Australia/Sydney")`'
+date: 'Generated `r lubridate::now(tzone="Australia/Sydney")` AEST'
 output: 
   html_document: 
     toc: yes
