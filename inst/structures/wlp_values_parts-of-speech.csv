@@ -9,6 +9,7 @@ CONJ,Conjunction
 ENCL,Enclitic
 EXCL,Exclamatory marker
 INF,Infinitive Verb
+INF-SFX,Suffix on Infinitive Verb
 N,Nominal
 N-,Dependent Nominal stem
 N-DAT,Dative Case-marked Nominal

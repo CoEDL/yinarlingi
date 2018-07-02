@@ -3,8 +3,9 @@
 #' @param wlp_df Warlpiri lexicon data frame (preferably piped in from \link{read_wlp_lexicon})
 #' @param grammar_file a Nearley grammar file (default is `wlp_skeleton-simple.ne`)
 #'
-#' @importFrom dplyr filter sym
+#' @importFrom dplyr filter
 #' @importFrom purrr discard map
+#' @importFrom rlang sym
 #' @importFrom stringr str_extract_all str_remove_all
 #'
 #' @export
