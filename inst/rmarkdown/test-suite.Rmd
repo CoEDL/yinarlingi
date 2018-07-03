@@ -8,7 +8,7 @@ params:
    lexicon_path: "~/git-repos/coedl/warlpiri-2018/src/wlp-lexicon_master.txt"
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message=FALSE}
 library(yinarlingi)
 library(purrr)
 library(knitr)
@@ -83,6 +83,10 @@ test_status <-
 
 if(Sys.getenv("CI_ENV") == "GITLAB") {
     # if in GitLab CI pipelines
+    test_df$data %>%
+        str_trim() %>% 
+        writeLines("tmp/wlp-skeleton.txt")
+    
     test_results %>%
         map_int(nrow) %>%
         sum() %>%
@@ -205,11 +209,17 @@ cat(skeleton_grammar, sep = '\n')
 ```{r Show code ordering validity results}
 if(nrow(test_results$syntax_ok) > 0) {
  test_results$syntax_ok %>%
-    mutate(failing_line = map_int(data, ~ filter(., code1_ok == FALSE) %>% pull(line))) %>%
+    mutate(failing_line = map_int(data, ~ filter(.,code1_ok == FALSE | is.na(code1_ok)) %>% slice(1) %>% pull(line))) %>%
     unnest(data,.drop = FALSE) %>%
     filter(line >= failing_line - 3, line <= failing_line + 3) %>%
     ungroup %>%
-    mutate(me_start = ifelse(duplicated(me_start), "", me_start)) %>%
+    mutate(
+        me_start = ifelse(duplicated(me_start), "", me_start),
+        error    = case_when(
+            code1_ok == FALSE                       ~ "Unexpected code1",
+            is.na(code1_ok) & lag(code1_ok) == TRUE ~ "Parse incomplete, expecting another code1 after."
+        )
+    ) %>% 
     prettify_data_col %>% 
     select(-failing_line) %>%
     kable_escaped()

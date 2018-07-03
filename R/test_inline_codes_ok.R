@@ -22,7 +22,7 @@ test_inline_codes_ok <- function(wlp_df) {
         select(line, data, code1) %>%
         filter(code1 %in% wlp_code_defs$code1) %>%
         mutate(
-            codes_found = str_extract_all(data, use_wlp_regex("all_codes")),
+            codes_found = str_extract_all(data, "\\\\[^\\[\\s]+"),
             codes_found = map_chr(codes_found, ~ paste0(., collapse = "; ") %>% str_remove_all("\\\\"))
         ) %>%
 

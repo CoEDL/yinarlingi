@@ -23,11 +23,9 @@ test_code1_ordered <- function(wlp_df, return_all = FALSE, grammar_file = system
     result_df <- wlp_df %>%
         mutate(code1_ok = entry_parser$parse_str(code1, return_labels = TRUE))
 
-    attr(result_df, "test_name") <- "code1_ordered"
-
     if(!return_all) {
         result_df %>%
-            filter(any(!code1_ok))
+            filter(any(!code1_ok) | any(is.na(code1_ok)))
     } else {
         result_df
     }
