@@ -82,10 +82,11 @@ test_status <-
     map(~ ifelse(nrow(.) == 0, '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>'))
 
 if(Sys.getenv("CI_ENV") == "GITLAB") {
+    # note that file paths are relative to where test-suite.Rmd is being run!
     # if in GitLab CI pipelines
     test_df$data %>%
         str_trim() %>% 
-        writeLines("tmp/wlp-skeleton.txt")
+        writeLines("wlp-skeleton.txt")
     
     test_results %>%
         map_int(nrow) %>%
