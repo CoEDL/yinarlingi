@@ -69,6 +69,7 @@ strays_df <-
 
 test_results <-
     list(
+        "values_ne"  = test_values_nonempty,
         "pos_ok"     = test_pos_strings,
         "attrs_ok"   = test_block_attributes,
         "syntax_ok"  = . %>% test_code1_ordered %>% group_by(me_start) %>% tidyr::nest(),
@@ -147,6 +148,14 @@ Valid end codes (e.g. `edm`, `ewe`) appear in the strays list. These codes appea
 
 ```{r Show stray codes}
 if(nrow(strays_df) > 0) print_table(strays_df)
+```
+
+## Test that there are no lines with unexpected empty content (`r test_status$values_ne`)
+
+Some codes do not need content (e.g. `\se`), but content are required for most (e.g. `\gl ... \egl`), and the following lines appear to have no content but are expected to have some:
+
+```{r}
+if(nrow(test_results$values_ne) > 0) print_table(test_results$values_ne)
 ```
 
 

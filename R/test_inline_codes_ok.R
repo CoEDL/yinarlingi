@@ -22,8 +22,15 @@ test_inline_codes_ok <- function(wlp_df) {
         select(line, data, code1) %>%
         filter(code1 %in% wlp_code_defs$code1) %>%
         mutate(
-            codes_found = str_extract_all(data, "\\\\[^\\[\\s]+"),
-            codes_found = map_chr(codes_found, ~ paste0(., collapse = "; ") %>% str_remove_all("\\\\"))
+            codes_found  = str_extract_all(data, "\\\\[^\\[\\s]+"),
+            str_past_end = str_remove(data, "^\\\\") %>% # Wow, this was complicated to capture.
+                stringi::stri_reverse() %>%              # get things past end code, e.g. '\\gl normal stuff here \\egl ...bad things here'
+                str_extract(".*?(?=[a-z]+\\\\)") %>%
+                stringi::stri_reverse() %>%
+                str_trim() %>%
+                ifelse(is.na(.), "", .),
+            codes_found  = map_chr(codes_found, ~ paste0(., collapse = "; ") %>% str_remove_all("\\\\")),
+            codes_found  = ifelse(nchar(str_past_end) > 0, paste(codes_found, str_past_end, sep = " "), codes_found)
         ) %>%
 
         # Do the test (leaving only rows that fail test)

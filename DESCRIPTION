@@ -17,6 +17,7 @@ Depends:
     tidyr
 Imports:
     lubridate,
+    magrittr,
     purrr,
     readr,
     rlang
