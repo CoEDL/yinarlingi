@@ -24,7 +24,7 @@ _WS           -> " "
 dialect      -> "E"                            # Eastern Warlpiri
               | "H"                            # Hansen River
               | "La"                           # Lajamanu
-              | "Ny"                           # ???
+              | "Ny"                           # Nyirrpi
               | "P"                            # Papunya
               | "Wi"                           # Willowra (Wirliyajarrayi)
               | "WW"                           # Wakirti Warlpiri (Alekarange/ Tennant Creek)
@@ -36,7 +36,7 @@ semanticType -> "EXT:"                         # extended meaning
               | "FUNCT:"                       # functional meaning (eg. 'ear' meaning 'ability to hear well')
               | "IDIOM:"                       # idiom
               | "NEO:"                         # neologism
-              | "SYMB:"                        # ???
+              | "SYMB:"                        # symbolic
 
 register     -> "BT"                           # Baby Talk
               | "SL"                           # Special Register Language

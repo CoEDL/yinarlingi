@@ -97,8 +97,6 @@ if(Sys.getenv("CI_ENV") == "GITLAB") {
 }
 ```
 
-<span class="badge tag">tests</span>`r ifelse(all(test_status == "passing"), '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>')`
-
 # About
 
 To do
@@ -232,6 +230,7 @@ if(nrow(test_results$syntax_ok) > 0) {
 <style type="text/css">
 h1 { font-size: 1.2em }
 h2 { font-size: 1.1em }
+
 .badge {
     font-family: DejaVu Sans, Verdana, Geneva, sans-serif;
     font-size: 11px;
