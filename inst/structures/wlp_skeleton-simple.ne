@@ -4,7 +4,7 @@ subEntry        ->  "sse" entryBlock "esse" subEntrySense:*
 
 mainEntrySense  ->  "se" entryBlock "ese"
 
-subEntrySense   ->	"sub" entryBlock "esub"
+subEntrySense   ->  "sub" entryBlock "esub"
 
 paradigmExample ->  "pdx" entryBlock "epdx"
                 |  "pdxs" entryBlock "epdxs"
