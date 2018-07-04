@@ -1,9 +1,10 @@
-mainEntry       ->   "me" entryBlock "eme"  senseEntry:* subEntry:*
+mainEntry       ->   "me" entryBlock "eme"  mainEntrySense:* subEntry:*
 
-subEntry        ->  "sse" entryBlock "esse" senseEntry:*
+subEntry        ->  "sse" entryBlock "esse" subEntrySense:*
 
-senseEntry      ->   "se" entryBlock "ese"
-                |   "sub" entryBlock "esub"
+mainEntrySense  ->  "se" entryBlock "ese"
+
+subEntrySense   ->	"sub" entryBlock "esub"
 
 paradigmExample ->  "pdx" entryBlock "epdx"
                 |  "pdxs" entryBlock "epdxs"
