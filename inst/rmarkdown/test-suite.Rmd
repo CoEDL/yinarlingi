@@ -67,8 +67,18 @@ strays_df <-
     wlp_df %>%
     filter(!is.na(code1), !code1 %in% wlp_code_defs$code1)
 
+test_brackets <- . %>%
+    mutate(
+        data = str_remove_all(data, use_wlp_regex("source_codes")),
+        l_bracs  = map_chr(data, ~ str_extract_all(., "[<|\\(|\\[]") %>% unlist(use.names = FALSE) %>% paste0(collapse  = "")),
+        r_bracs  = map_chr(data, ~ str_extract_all(., "[>|\\)|\\]]") %>% unlist(use.names = FALSE) %>% paste0(collapse  = "")),
+        bracs_ok = nchar(l_bracs) == nchar(r_bracs)
+    ) %>%
+    filter(!bracs_ok)
+
 test_results <-
     list(
+        "bracs_ok"   = . %>% select(-code1) %>% test_brackets %>% prettify_data_col,
         "values_ne"  = test_values_nonempty,
         "pos_ok"     = test_pos_strings,
         "attrs_ok"   = test_block_attributes,
@@ -100,22 +110,6 @@ if(Sys.getenv("CI_ENV") == "GITLAB") {
 
 # About
 
-To do
-
-## Defined codes
-
-```{r Show codes}
-print_table(wlp_code_defs)
-```
-
-
-## Skeleton grammar
-
-```{r Show grammar, comment=''}
-cat(skeleton_grammar, sep = '\n')
-```
-
-
 # Diagnostics
 
 ## Coverage (`r cov_pc`%)
@@ -134,6 +128,12 @@ The current skeleton grammar covers `r cov_pc`% of the raw dictionary data. The 
 `r residual_codes`
 
 # Within-line tests
+
+## Opening and closing markers all paired (`r test_status$bracs_ok`)
+
+```{r bracs-test}
+if(nrow(test_results$bracs_ok) > 0) print_table(test_results$bracs_ok)
+```
 
 The tests within this section operate on individual lines
 
