@@ -4,10 +4,10 @@
 \alias{test_xrefs_homed}
 \title{Test that no cross-references are orphaned in the Warlpiri dictionary}
 \usage{
-test_xrefs_homed(wlp_df)
+test_xrefs_homed(wlp_lexicon)
 }
 \arguments{
-\item{wlp_df}{a Warlpiri lexicon data frame}
+\item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
 }
 \description{
 Test that no cross-references are orphaned in the Warlpiri dictionary

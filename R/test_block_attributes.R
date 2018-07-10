@@ -1,10 +1,15 @@
+#' Test that listed attributes for entry blocks are well-formatted
+#'
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
+
 #' @export
 
-test_block_attributes <- function(wlp_df) {
+test_block_attributes <- function(wlp_lexicon) {
 
     wlp_attrs_parser <- compile_grammar(system.file("structures/wlp_block-attributes.ne", package = "yinarlingi"))
 
-    wlp_df %>%
+    wlp_lexicon %>%
+        make_wlp_df() %>%
         filter(code1 %in% c("me", "sse", "se", "sub")) %>%
         select(-code1) %>%
         mutate(

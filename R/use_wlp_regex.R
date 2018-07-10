@@ -1,6 +1,6 @@
 #' Use a pre-defined regular expression for the Warlpiri Dictionary
 #'
-#' @param regex_name Name of regular expression to get, leave as NA to see the names. \link{yinarlingi}
+#' @param regex_name Name of regular expression to get, leave as NA to see the names.
 #'
 #' @export
 #'

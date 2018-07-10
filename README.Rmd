@@ -16,13 +16,15 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-The purpose of yinarlingi is to provide a set of convenience functions for validating Warlpiri dictionary data. Essentially, it pre-configures various functions from [tidylex](https://coedl.github.io/tidylex/) and [tidyverse](https://www.tidyverse.org/) packages with values specific to the Warlpiri dictionary data, so that those within the Warlpiri dictionary project can quickly run and re-run frequently used routines (e.g. data validation, derived views), and also so that these tests can be run in a Continuous Testing (CT) environment such as GitLab pipelines.
+The purpose of yinarlingi is to provide a set of convenience functions for validating Warlpiri dictionary data. Essentially, it pre-configures various functions from the [tidylex](https://coedl.github.io/tidylex/) and [tidyverse](https://www.tidyverse.org/) packages with parameters specific to the Warlpiri dictionary data, so that those within the Warlpiri dictionary project can quickly run and re-run frequently used routines (e.g. data validation, derived views), and also so that these tests can be run in a Continuous Testing/Continuous Deployment environment such as [GitLab pipelines](https://docs.gitlab.com/ee/ci/):
+
+![](man/figures/pipeline.png)
 
 Yinarlingi is a Warlpiri word for echidna.
 
 ## Installation
 
-You can install yinarlingi from github with:
+You can install yinarlingi from GitHub with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
@@ -31,7 +33,7 @@ devtools::install_github("CoEDL/yinarlingi")
 
 ## Examples
 
-### Read in the Warlpiri lexicon into a data frame
+### Test that a Warlpiri dictionary entry's data lines are well-ordered
 
 The Warlpiri dictionary consists of a large plain text file of the form (where `\me` stands for main entry; see [full list of codes](https://github.com/CoEDL/yinarlingi/blob/master/inst/structures/wlp_code-definitions.csv)):
 
@@ -65,36 +67,10 @@ The Warlpiri dictionary consists of a large plain text file of the form (where `
 ...
 ```
 
-We can use the `read_wlp_lexicon` function to read such data into a data frame:
-
-```{r read-mini-lexicon}
-library(yinarlingi)
-
-# Yinarlingi provides a 'mini lexicon' with a few entries as extra data
-# Use system.file to locate the path to this file in your local computer
-lexicon_path <- system.file("extdata/wlp-lexicon_mini.txt", package = "yinarlingi")
-
-read_wlp_lexicon(lexicon_path)
-```
-
-We can see that this is the exact same result as calling the `read_lexicon` function from the tidylex package:
-
-```{r tidylex-demo}
-library(tidylex)
-
-read_lexicon(
-    file  = lexicon_path,
-    regex = "^\\\\([a-z]+)",
-    into  = "code1"
-)
-```
-
-### Test that Warlpiri dictionary entry data lines are well-ordered
-
-The a well-structured Warlpiri entry is defined as a [Nearley](https://nearley.js.org/) grammar (see full grammar [here](https://github.com/CoEDL/yinarlingi/blob/master/inst/structures/wlp_skeleton-simple.ne)), of which a snippet is shown below:
+A well-structured Warlpiri entry is defined as a [Nearley](https://nearley.js.org/) grammar (see full grammar [here](https://github.com/CoEDL/yinarlingi/blob/master/inst/structures/wlp_skeleton-simple.ne)), of which a snippet is shown below:
 
 ```nearley
-entryBody       -> "org":? "dm":* "def":? "lat":? "gl":? "rv":? "cm":*
+entryBlock       -> "org":? "dm":* "def":? "lat":? "gl":? "rv":? "cm":*
                       (exampleBlock:+ | paradigmExample:+):?
                       crossRefs
 ```
@@ -108,12 +84,14 @@ We can see here that a semantic domain line `dm` must come *before* the gloss li
 ...
 </pre>
 
-Such data are caught by the `test_code1_ordered` function (notice `code1_ok` is `FALSE` on the third line):
+The yinarlingi test suite uses the `test_code1_ordered()` function to catch such cases (notice `code1_ok` is `FALSE` on the third line):
 
-```{r test-invalid-data}
+```{r Code1 ordered example, message=FALSE, warning=FALSE}
+library(yinarlingi)
+
+# Get local path to the yinarlingi-provided file, 'wlp-lexicon_invalid-sequence.txt'
 invalid_lexicon_path <- system.file("extdata/wlp-lexicon_invalid-sequence.txt", package = "yinarlingi")
 
-read_wlp_lexicon(invalid_lexicon_path) %>%
-    test_code1_ordered()
+test_code1_ordered(invalid_lexicon_path)
 ```
 

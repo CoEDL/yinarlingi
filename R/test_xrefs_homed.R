@@ -1,13 +1,15 @@
 #' Test that no cross-references are orphaned in the Warlpiri dictionary
 #'
-#' @param wlp_df a Warlpiri lexicon data frame
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #'
 #' @importFrom tidyr separate_rows
 #'
 #' @export
 #'
 
-test_xrefs_homed <- function(wlp_df) {
+test_xrefs_homed <- function(wlp_lexicon) {
+
+    wlp_df <- make_wlp_df(wlp_lexicon)
 
     whitelist_df <- wlp_df %>%
         filter(code1 %in% c("me", "sse")) %>%

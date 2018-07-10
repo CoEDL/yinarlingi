@@ -4,12 +4,12 @@
 \alias{test_code1_ordered}
 \title{Test whether left-most codes appear in expected order within the entries}
 \usage{
-test_code1_ordered(wlp_df, return_all = FALSE,
+test_code1_ordered(wlp_lexicon, return_all = FALSE,
   grammar_file = system.file("structures/wlp_skeleton-simple.ne", package =
   "yinarlingi"))
 }
 \arguments{
-\item{wlp_df}{a Warlpiri lexicon data frame}
+\item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
 
 \item{return_all}{return the all from data frame or just entries with errors (default is \code{FALSE})}
 

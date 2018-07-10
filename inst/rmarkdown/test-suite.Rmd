@@ -5,267 +5,109 @@ output:
   html_document: 
     toc: yes
 params:
-   lexicon_path: "~/git-repos/coedl/warlpiri-2018/src/wlp-lexicon_master.txt"
+   lexicon_path: '~/git-repos/coedl/warlpiri-2018/src/wlp-lexicon_master.txt'
 ---
 
-```{r setup, include=FALSE, message=FALSE}
+```{r Setup, include=FALSE, message=FALSE, warning=FALSE}
 library(yinarlingi)
 library(purrr)
-library(knitr)
+library(furrr)
 library(DT)
+library(htmltools)
+
+# Set true/false flag for whether test is being run inside a GitLab pipeline
+in_gitlab <- Sys.getenv("CI_ENV") == "GITLAB"
 
 # Set global knitr options
-opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
 
-# Helper functions for pretty printing
-escape_md <- . %>%
-    str_replace_all("\\\\", "\\\\\\\\") %>% 
-    str_replace_all("\\^", "\\\\^") %>%
-    str_replace_all("\\*", "\\\\*")
-
-kable_escaped <- . %>%
-    mutate_if(is.character, funs(escape_md)) %>%
-    kable()
-
+# Helper functions
 prettify_data_col <- . %>%
-    mutate(data = str_trunc(data, width = 50, ellipsis = "\t..."))
+    mutate_at(vars(matches("data")), funs(str_trunc(., width = 50, ellipsis = "\t...")))
 
-print_table <- function(df) datatable(df)
+badge_test <- function(is_passing) ifelse(is_passing, '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>')
+```
 
-# Read in data
+```{r Run test suite}
+# Get all 'test_*' functions from yinarlingi package
+yinarlingi_tests <- 
+    help.search("test_", package = "yinarlingi") %>%
+    .$matches %>%
+    select(Title, f_name = Name)
 
-attrs_grammar <-
-    system.file("structures/wlp_block-attributes.ne", package = "yinarlingi") %>%
-    readLines()
+# Run these tests in parallel with future_map()
+plan(multiprocess)
 
-skeleton_grammar <-
-    system.file("structures/wlp_skeleton-simple.ne", package = "yinarlingi") %>%
-    readLines()
-
-wlp_code_defs <-
-    readr::read_csv(
-        file      = system.file("structures/wlp_code-definitions.csv", package = "yinarlingi"),
-        col_types = "ccc"
+yinarlingi_tests$results <-
+    future_map(.x = yinarlingi_tests$f_name,
+               .f = ~ do.call(what = ., args = list(wlp_lexicon = params$lexicon_path))
     )
 
-wlp_df <-
-    read_wlp_lexicon(params$lexicon_path)
+yinarlingi_tests$passing <- map_lgl(yinarlingi_tests$results, ~ nrow(.) == 0)
 
-test_df <-
-    skeletonise_df(wlp_df)
+tests_failing <- sum(!yinarlingi_tests$passing) > 0
+```
 
-# Coverage = lines in skeleton / lines in raw data
-cov_pc <-
-    `/`(
-        test_df %>% nrow(),
-        wlp_df %>% filter(!is.na(code1)) %>% nrow()
-    ) %>%
-    `*`(100) %>%
-    round(digits = 2)
+```{r Run GitLab helpers, eval = in_gitlab}
+# Note that file paths are relative to where test-suite.Rmd is being run!
+test_df$data %>%
+    str_trim() %>% 
+    writeLines("wlp-skeleton.txt")
 
-strays_df <-
-    wlp_df %>%
-    filter(!is.na(code1), !code1 %in% wlp_code_defs$code1)
+# Write out file so pipeline knows whether or not it should exit 0 or exit 1
+ifelse(tests_failing, "failing", "passing") %>% 
+    writeLines("tests_status.txt")
+```
 
-test_brackets <- . %>%
+# Tests summary
+
+Full description of all tests available on [https://coedl.github.io/yinarlingi/reference](https://coedl.github.io/yinarlingi/reference), and the Warlpiri dictionary structures (e.g. parts of speech values, code definitions) on [https://coedl.github.io/yinarlingi/articles/wlp-structures.html](https://coedl.github.io/yinarlingi/articles/wlp-structures.html).
+
+```{r Report status of all tests}
+yinarlingi_tests %>%
     mutate(
-        data = str_remove_all(data, use_wlp_regex("source_codes")),
-        l_bracs  = map_chr(data, ~ str_extract_all(., "[<|\\(|\\[]") %>% unlist(use.names = FALSE) %>% paste0(collapse  = "")),
-        r_bracs  = map_chr(data, ~ str_extract_all(., "[>|\\)|\\]]") %>% unlist(use.names = FALSE) %>% paste0(collapse  = "")),
-        bracs_ok = nchar(l_bracs) == nchar(r_bracs)
-    ) %>%
-    filter(!bracs_ok)
-
-test_results <-
-    list(
-        "bracs_ok"   = . %>% select(-code1) %>% test_brackets %>% prettify_data_col,
-        "values_ne"  = test_values_nonempty,
-        "pos_ok"     = test_pos_strings,
-        "attrs_ok"   = test_block_attributes,
-        "syntax_ok"  = . %>% test_code1_ordered %>% group_by(me_start) %>% tidyr::nest(),
-        "inline_ok"  = . %>% test_inline_codes_ok %>% ungroup %>% prettify_data_col,
-        "xrefs_ok"   = . %>% test_xrefs_homed %>% prettify_data_col
-    ) %>%
-    map(~ .(test_df))
-
-test_status <-
-    test_results %>%
-    map(~ ifelse(nrow(.) == 0, '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>'))
-
-if(Sys.getenv("CI_ENV") == "GITLAB") {
-    # note that file paths are relative to where test-suite.Rmd is being run!
-    # if in GitLab CI pipelines
-    test_df$data %>%
-        str_trim() %>% 
-        writeLines("wlp-skeleton.txt")
-    
-    test_results %>%
-        map_int(nrow) %>%
-        sum() %>%
-        `>`(0) %>%
-        ifelse("failing", "passing") %>% 
-        writeLines("tests_status.txt")
-}
-```
-
-# About
-
-# Diagnostics
-
-## Coverage (`r cov_pc`%)
-
-```{r Show coverage statistics}
-residual_codes <-
-    wlp_df %>%
-    filter(!code1 %in% unique(test_df$code1)) %>%
-    pull(code1) %>%
-    unique() %>%
-    sort()
-
-```
-
-The current skeleton grammar covers `r cov_pc`% of the raw dictionary data. The residual codes current unprocessed are:
-`r residual_codes`
-
-# Within-line tests
-
-## Opening and closing markers all paired (`r test_status$bracs_ok`)
-
-```{r bracs-test}
-if(nrow(test_results$bracs_ok) > 0) print_table(test_results$bracs_ok)
-```
-
-The tests within this section operate on individual lines
-
-## Test that there are no stray codes (`r ifelse(nrow(strays_df) == 0, '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>')`)
-
-**Common issues**:
-
-Valid end codes (e.g. `edm`, `ewe`) appear in the strays list. These codes appear as stray because they technically are not valid as `code1` codes, i.e. the first code from the left-edge of the line. They should be placed as a 2nd, ending code to a previous line, e.g. (note that `dm` is the left-most code, not `edm`):
-    <pre>\dm ... (\edm should go here)
-<b>\edm</b></pre>
-
-
-```{r Show stray codes}
-if(nrow(strays_df) > 0) print_table(strays_df)
-```
-
-## Test that there are no lines with unexpected empty content (`r test_status$values_ne`)
-
-Some codes do not need content (e.g. `\se`), but content are required for most (e.g. `\gl ... \egl`), and the following lines appear to have no content but are expected to have some:
-
-```{r}
-if(nrow(test_results$values_ne) > 0) print_table(test_results$values_ne)
-```
-
-
-`ewe` appears as a left-most code, thus considered 'stray'. Note that the end example codes, `ewe` or `ewe` should appear on the English translation line, i.e. `\et ... \ewe` or `\et ... \ewed`
-
-## Test that only expected backslash codes appear in each line (`r test_status$inline_ok`)
-
-Description of test here
-
-```{r Show inline codes validity results}
-if(nrow(test_results$inline_ok) > 0) print_table(test_results$inline_ok)
-
-```
-
-## Test that all parts of speech are valid (`r test_status$pos_ok`)
-
-### Table of valid parts of speech
-
-```{r}
-system.file("structures/wlp_values_parts-of-speech.csv", package = "yinarlingi") %>% read.csv() %>% datatable()
-```
-
-### Error lines (`r nrow(test_results$pos_ok)`)
-
-```{r}
-if(nrow(test_results$pos_ok) > 0) print_table(test_results$pos_ok)
-```
-
-## Test that all block attribute lines are well-formed (`r test_status$attrs_ok`)
-
-`\me`, `\sse`, `\se`, and `\sub` blocks may have a series of attributes listed, such as dialect, register, etc.
-
-```{r, comment=''}
-cat(attrs_grammar, sep = '\n')
-```
-
-```{r}
-if(nrow(test_results$attrs_ok) > 0) print_table(test_results$attrs_ok)
-```
-
-
-## Test that there are no orphaned cross-references (`r test_status$xrefs_ok`)
-
-```{r Show orphaned cross-references}
-if(nrow(test_results$xrefs_ok) > 0) print_table(test_results$xrefs_ok)
-```
-
-# Between-line tests
-
-These tests 
-
-## Test that code sequence within an entry follows expected structure (`r test_status$syntax_ok`)
-
-```{r Show current grammar, comment=''}
-cat(skeleton_grammar, sep = '\n')
-```
-
-
-```{r Show code ordering validity results}
-if(nrow(test_results$syntax_ok) > 0) {
- test_results$syntax_ok %>%
-    mutate(failing_line = map_int(data, ~ filter(.,code1_ok == FALSE | is.na(code1_ok)) %>% slice(1) %>% pull(line))) %>%
-    unnest(data,.drop = FALSE) %>%
-    filter(line >= failing_line - 3, line <= failing_line + 3) %>%
-    ungroup %>%
-    mutate(
-        me_start = ifelse(duplicated(me_start), "", me_start),
-        error    = case_when(
-            code1_ok == FALSE                       ~ "Unexpected code1",
-            is.na(code1_ok) & lag(code1_ok) == TRUE ~ "Parse incomplete, expecting another code1 after."
-        )
+        Title = ifelse(passing, Title, paste('<a href="#', f_name, '">', Title, '</a>', sep = '')),
+        Status = badge_test(passing)
     ) %>% 
-    prettify_data_col %>% 
-    select(-failing_line) %>%
-    kable_escaped()
-}
-
+    select(-results, -f_name, -passing) %>% 
+    knitr::kable()
 ```
 
+# Failing tests
+
+`r if(tests_failing == FALSE) "None! 🎉🎉🎉"`
+
+```{r Show results tables from failing tests, eval = tests_failing}
+yinarlingi_tests %>%
+    filter(!passing) %>%
+    split(.$f_name) %>%
+    map(function(failing_table) {
+        
+        ref_link <- paste0("https://coedl.github.io/yinarlingi/reference/", failing_table$f_name, ".html", collapse = "")
+        
+        tagList(
+            tags$h3(
+                id = failing_table$f_name,
+                failing_table$Title,
+                htmltools::tags$a(href=ref_link, target = "_blank", '(see full description)')
+            ),
+            failing_table$results[[1]] %>% ungroup %>% prettify_data_col() %>% datatable()
+        )
+        
+    }) %>%
+    tagList()
+```
 
 <style type="text/css">
-h1 { font-size: 1.2em }
-h2 { font-size: 1.1em }
+h1 { font-size: 1.4em }
+h2 { font-size: 1.3em }
+h3 { font-size: 1.2em }
 
-.badge {
-    font-family: DejaVu Sans, Verdana, Geneva, sans-serif;
-    font-size: 11px;
-    color: white;
-}
+.badge.tag { background-color: #4c4c4c; padding: 2px 4px 3px 7px; border-radius: 4px 0 0 4px; }
 
-.badge.tag {
-    background-color: #4c4c4c;
-    padding: 2px 4px 3px 7px;
-    border-radius: 4px 0 0 4px;
-}
+.badge.value { padding: 2px 7px 3px 4px; border-radius: 0 4px 4px 0; }
 
-.badge.value {
-    padding: 2px 7px 3px 4px;
-    border-radius: 0 4px 4px 0;
-}
+.badge.build-passing { background-color: #4b2; }
 
-.badge.license {
-    background-color: #487;
-}
-
-.badge.build-passing {
-    background-color: #4b2;
-}
-
-.badge.build-failing {
-    background-color: #c54;
-}
+.badge.build-failing { background-color: #c54; }
 </style>

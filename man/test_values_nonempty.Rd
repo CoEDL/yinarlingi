@@ -4,10 +4,10 @@
 \alias{test_values_nonempty}
 \title{Test whether all non-block codes have some content in them}
 \usage{
-test_values_nonempty(wlp_df)
+test_values_nonempty(wlp_lexicon)
 }
 \arguments{
-\item{wlp_df}{a Warlpiri lexicon data frame}
+\item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
 }
 \description{
 Test whether all non-block codes have some content in them

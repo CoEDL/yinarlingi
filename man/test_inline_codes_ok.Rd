@@ -4,10 +4,10 @@
 \alias{test_inline_codes_ok}
 \title{Test whether all expected codes (and only these) codes appear on a given line}
 \usage{
-test_inline_codes_ok(wlp_df)
+test_inline_codes_ok(wlp_lexicon)
 }
 \arguments{
-\item{wlp_df}{a Warlpiri lexicon data frame}
+\item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
 }
 \description{
 Test whether all expected codes (and only these) codes appear on a given line

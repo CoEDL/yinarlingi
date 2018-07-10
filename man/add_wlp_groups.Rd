@@ -4,12 +4,12 @@
 \alias{add_wlp_groups}
 \title{Add grouping columns to a Warlpiri lexicon data frame}
 \usage{
-add_wlp_groups(wlp_df, groupings)
+add_wlp_groups(wlp_lexicon, groupings)
 }
 \arguments{
-\item{wlp_df}{a Warlpiri lexicon data frame}
+\item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
 
-\item{groupings}{type of grouping(s) to append to the data frame}
+\item{groupings}{type of grouping(s) to append to the data frame (\code{"me_only"}, \code{"me_or_sse"}, or \code{c("me_or_sse", "se_or_sub")})}
 }
 \description{
 Add grouping columns to a Warlpiri lexicon data frame

@@ -1,15 +1,17 @@
 #' View English-to-Warlpiri finder list
 #'
-#' @param wlp_df a Warlpiri lexicon data frame
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #'
 #' @importFrom tidyr unnest
 #' @importFrom purrr map
 #'
 #' @export
 
-view_wlp_reversals <- function(wlp_df) {
+view_wlp_reversals <- function(wlp_lexicon) {
 
-    wlp_df %>%
+    wlp_lexicon %>%
+        make_wlp_df() %>%
+
         # Keep only codes needed for making reversals table
         filter(code1 %in% c("rv", "me", "sse")) %>%
 
@@ -63,7 +65,10 @@ view_wlp_reversals <- function(wlp_df) {
         arrange(eng_parent, desc(rev_parent_same), rev_pretty) %>%
         select(-rev_parent_same) %>%
 
-        mutate(eng_parent = ifelse(duplicated(eng_parent), "", eng_parent))
+        mutate(
+            eng_parent = ifelse(duplicated(eng_parent), "", eng_parent),
+            rev_pretty = ifelse(rev_pretty == eng_parent, "", rev_pretty)
+        )
 
 }
 

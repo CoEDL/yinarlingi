@@ -1,6 +1,10 @@
+#' Test that parts of speech values within main- and sub-entry lines are well-formatted
+#'
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
+
 #' @export
 
-test_pos_strings <- function(wlp_df) {
+test_pos_strings <- function(wlp_lexicon) {
 
     wlp_pos_values <-
         read_csv(
@@ -8,7 +12,8 @@ test_pos_strings <- function(wlp_df) {
             col_types = "cc"
         )
 
-    wlp_df %>%
+    wlp_lexicon %>%
+        make_wlp_df() %>%
         filter(code1 %in% c("me", "sse")) %>%
         select(-code1) %>%
         mutate(

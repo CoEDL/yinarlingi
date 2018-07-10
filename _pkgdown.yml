@@ -8,3 +8,40 @@ template:
   params:
     bootswatch: united
 
+reference:
+- title: Tests
+  contents:
+  - starts_with("test_")
+
+- title: Views
+  contents:
+  - starts_with("view_")
+
+- title: Helpers
+  contents:
+  - read_wlp_lexicon
+  - skeletonise_df
+  - add_wlp_groups
+  - use_wlp_regex
+  - alphabetise_wlp_file
+
+navbar:
+  type: default
+  left:
+  - text: Introduction
+    href: articles/yinarlingi.html
+  - text: Reference
+    menu:
+      - text: Dictionary structures
+        href: articles/wlp-structures.html
+      - text: Tests, Views, & Helpers
+        href: reference/index.html
+  - text: Articles
+    menu:
+      - text: Introduction
+        href: articles/yinarlingi.html
+      - text: Onboarding (for new project members)
+        href: articles/wlp-onboarding.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/coedl/yinarlingi

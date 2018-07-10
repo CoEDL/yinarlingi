@@ -24,3 +24,13 @@ read_wlp_lexicon <- function(lexicon_path, preprocess = TRUE) {
     }
 
 }
+
+make_wlp_df <- function(wlp_lexicon) {
+
+    if(!is.data.frame(wlp_lexicon) && file.exists(wlp_lexicon)) {
+        read_wlp_lexicon(wlp_lexicon)
+    } else {
+        wlp_lexicon
+    }
+
+}

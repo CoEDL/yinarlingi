@@ -1,6 +1,6 @@
 #' Test whether all expected codes (and only these) codes appear on a given line
 #'
-#' @param wlp_df a Warlpiri lexicon data frame
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #'
 #' @importFrom purrr map_chr
 #' @importFrom readr read_csv
@@ -8,7 +8,7 @@
 #' @export
 #'
 
-test_inline_codes_ok <- function(wlp_df) {
+test_inline_codes_ok <- function(wlp_lexicon) {
 
     wlp_code_defs <-
         read_csv(
@@ -16,7 +16,9 @@ test_inline_codes_ok <- function(wlp_df) {
             col_types = "ccc"
         )
 
-    wlp_df %>%
+    wlp_lexicon %>%
+        make_wlp_df() %>%
+        skeletonise_df() %>%
         # Prepare df for test
         ungroup %>%
         select(line, data, code1) %>%

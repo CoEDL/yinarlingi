@@ -4,10 +4,10 @@
 \alias{view_wlp_reversals}
 \title{View English-to-Warlpiri finder list}
 \usage{
-view_wlp_reversals(wlp_df)
+view_wlp_reversals(wlp_lexicon)
 }
 \arguments{
-\item{wlp_df}{a Warlpiri lexicon data frame}
+\item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
 }
 \description{
 View English-to-Warlpiri finder list

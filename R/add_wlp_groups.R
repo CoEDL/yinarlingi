@@ -1,7 +1,7 @@
 #' Add grouping columns to a Warlpiri lexicon data frame
 #'
-#' @param wlp_df a Warlpiri lexicon data frame
-#' @param groupings type of grouping(s) to append to the data frame
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
+#' @param groupings type of grouping(s) to append to the data frame (\code{"me_only"}, \code{"me_or_sse"}, or \code{c("me_or_sse", "se_or_sub")})
 #'
 #' @importFrom magrittr %<>%
 #' @importFrom purrr partial
@@ -10,9 +10,9 @@
 #' @export
 #'
 
-add_wlp_groups <- function(wlp_df, groupings) {
+add_wlp_groups <- function(wlp_lexicon, groupings) {
 
-    return_df <- wlp_df
+    return_df <- make_wlp_df(wlp_lexicon)
 
     if(groupings[1] == "me_only") {
 

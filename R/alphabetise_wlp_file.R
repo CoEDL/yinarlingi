@@ -1,11 +1,17 @@
+#' (Re-)alphabetise the Warlpiri dictionary file
+#'
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 
-alphabetise_wlp_file <- function(lexicon_file, output_file) {
+#' @export
+
+alphabetise_wlp_file <- function(wlp_lexicon, output_file) {
 
     if(lexicon_file == output_file) {
-        stop("Refusing to overwrite source file. Pick a different spot.")
+        stop("Refusing to overwrite source file. Pick a different file path.")
     }
 
-    read_wlp_lexicon(lexicon_file) %>%
+    wlp_lexicon %>%
+        make_wlp_df() %>%
         add_wlp_groups("me_only") %>%
         ungroup %>% # ungrouped mutate is faster
         mutate(

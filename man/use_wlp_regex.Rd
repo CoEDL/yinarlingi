@@ -7,7 +7,7 @@
 use_wlp_regex(regex_name = NA)
 }
 \arguments{
-\item{regex_name}{Name of regular expression to get, leave as NA to see the names. \link{yinarlingi}}
+\item{regex_name}{Name of regular expression to get, leave as NA to see the names.}
 }
 \description{
 Use a pre-defined regular expression for the Warlpiri Dictionary

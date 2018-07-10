@@ -1,0 +1,62 @@
+---
+title: "Warlpiri dictionary structures"
+author: "Nay San"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r Setup, include=FALSE, echo=FALSE, warning=FALSE}
+library(magrittr)
+library(readr)
+library(knitr)
+
+# Helper functions
+print_yin_csv <- . %>%
+    file.path(system.file("structures", package = "yinarlingi"), .) %>%
+    read_csv() %>%
+    kable()
+
+print_yin_file <- . %>%
+    file.path(system.file("structures", package = "yinarlingi"), .) %>%
+    read_file()
+
+# Set global knitr options
+opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+# Code definitions
+
+```{r Code definitions}
+print_yin_csv("wlp_code-definitions.csv")
+```
+
+# Parts of speech values
+
+```{r Parts of speech}
+print_yin_csv("wlp_values_parts-of-speech.csv")
+```
+
+# Block attributes grammar
+
+```
+`r print_yin_file("wlp_block-attributes.ne")`
+```
+
+# Entry structure grammar
+
+```
+`r print_yin_file("wlp_skeleton-simple.ne")`
+```
+
+# Regular expressions
+
+The list of regular expressions defined below can be retrieved using the `use_wlp_regex()` function, e.g. `str_extract(string = "\\me jaala (PV): (H,Wi,Y)", pattern = use_wlp_regex("me_sse_value"))`.
+
+```r
+`r print_yin_file("wlp_regexes.R")`
+```
+

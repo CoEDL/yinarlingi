@@ -4,12 +4,12 @@
 \alias{skeletonise_df}
 \title{Discard lines whose codes do not occur in the Warlpiri dictionary skeleton grammar}
 \usage{
-skeletonise_df(wlp_df,
+skeletonise_df(wlp_lexicon,
   grammar_file = system.file("structures/wlp_skeleton-simple.ne", package =
   "yinarlingi"))
 }
 \arguments{
-\item{wlp_df}{Warlpiri lexicon data frame (preferably piped in from \link{read_wlp_lexicon})}
+\item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
 
 \item{grammar_file}{a Nearley grammar file (default is `wlp_skeleton-simple.ne`)}
 }

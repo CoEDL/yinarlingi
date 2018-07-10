@@ -1,6 +1,6 @@
 #' Discard lines whose codes do not occur in the Warlpiri dictionary skeleton grammar
 #'
-#' @param wlp_df Warlpiri lexicon data frame (preferably piped in from \link{read_wlp_lexicon})
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #' @param grammar_file a Nearley grammar file (default is `wlp_skeleton-simple.ne`)
 #'
 #' @importFrom dplyr filter
@@ -11,7 +11,7 @@
 #' @export
 #'
 
-skeletonise_df <- function(wlp_df, grammar_file = system.file("structures/wlp_skeleton-simple.ne", package = "yinarlingi")) {
+skeletonise_df <- function(wlp_lexicon, grammar_file = system.file("structures/wlp_skeleton-simple.ne", package = "yinarlingi")) {
 
     skeleton_codes <-
         readLines(grammar_file) %>%
@@ -21,7 +21,8 @@ skeletonise_df <- function(wlp_df, grammar_file = system.file("structures/wlp_sk
         str_remove_all('"') %>%         # remove literals' double quotes, '"ant"' -> 'ant'
         sort()
 
-    wlp_df %>%
+    wlp_lexicon %>%
+        make_wlp_df() %>%
         filter(code1 %in% skeleton_codes)
 
 }

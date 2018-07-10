@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test whether left-most codes appear in expected order within the entries — test_code1_ordered • yinarlingi</title>
+<title>Test whether all non-block codes have some content in them — test_values_nonempty • yinarlingi</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Test whether left-most codes appear in expected order within the entries — test_code1_ordered" />
+<meta property="og:title" content="Test whether all non-block codes have some content in them — test_values_nonempty" />
 
-<meta property="og:description" content="Test whether left-most codes appear in expected order within the entries" />
+<meta property="og:description" content="Test whether all non-block codes have some content in them" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,20 +120,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Test whether left-most codes appear in expected order within the entries</h1>
-    <small class="dont-index">Source: <a href='https://github.com/coedl/yinarlingi/blob/master/R/test_code1_ordered.R'><code>R/test_code1_ordered.R</code></a></small>
-    <div class="hidden name"><code>test_code1_ordered.Rd</code></div>
+    <h1>Test whether all non-block codes have some content in them</h1>
+    <small class="dont-index">Source: <a href='https://github.com/coedl/yinarlingi/blob/master/R/test_values_nonempty.R'><code>R/test_values_nonempty.R</code></a></small>
+    <div class="hidden name"><code>test_values_nonempty.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Test whether left-most codes appear in expected order within the entries</p>
+    <p>Test whether all non-block codes have some content in them</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>test_code1_ordered</span>(<span class='no'>wlp_lexicon</span>, <span class='kw'>return_all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>grammar_file</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"structures/wlp_skeleton-simple.ne"</span>, <span class='kw'>package</span> <span class='kw'>=</span>
-  <span class='st'>"yinarlingi"</span>))</pre>
+    <pre class="usage"><span class='fu'>test_values_nonempty</span>(<span class='no'>wlp_lexicon</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,14 +139,6 @@
     <tr>
       <th>wlp_lexicon</th>
       <td><p>a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file</p></td>
-    </tr>
-    <tr>
-      <th>return_all</th>
-      <td><p>return the all from data frame or just entries with errors (default is <code>FALSE</code>)</p></td>
-    </tr>
-    <tr>
-      <th>grammar_file</th>
-      <td><p>a Nearley grammar file (default is `wlp_skeleton-simple.ne`)</p></td>
     </tr>
     </table>
     

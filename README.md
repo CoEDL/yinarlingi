@@ -7,19 +7,21 @@
 
 The purpose of yinarlingi is to provide a set of convenience functions
 for validating Warlpiri dictionary data. Essentially, it pre-configures
-various functions from [tidylex](https://coedl.github.io/tidylex/) and
-[tidyverse](https://www.tidyverse.org/) packages with values specific to
-the Warlpiri dictionary data, so that those within the Warlpiri
-dictionary project can quickly run and re-run frequently used routines
-(e.g. data validation, derived views), and also so that these tests can
-be run in a Continuous Testing (CT) environment such as GitLab
-pipelines.
+various functions from the [tidylex](https://coedl.github.io/tidylex/)
+and [tidyverse](https://www.tidyverse.org/) packages with parameters
+specific to the Warlpiri dictionary data, so that those within the
+Warlpiri dictionary project can quickly run and re-run frequently used
+routines (e.g. data validation, derived views), and also so that these
+tests can be run in a Continuous Testing/Continuous Deployment
+environment such as [GitLab pipelines](https://docs.gitlab.com/ee/ci/):
+
+![Pipeline](man/figures/pipeline.png)
 
 Yinarlingi is a Warlpiri word for echidna.
 
 ## Installation
 
-You can install yinarlingi from github with:
+You can install yinarlingi from GitHub with:
 
 ``` r
 # install.packages("devtools")
@@ -28,7 +30,7 @@ devtools::install_github("CoEDL/yinarlingi")
 
 ## Examples
 
-### Read in the Warlpiri lexicon into a data frame
+### Test that a Warlpiri dictionary entry’s data lines are well-ordered
 
 The Warlpiri dictionary consists of a large plain text file of the form
 (where `\me` stands for main entry; see [full list of
@@ -62,82 +64,13 @@ codes](https://github.com/CoEDL/yinarlingi/blob/master/inst/structures/wlp_code-
     
     ...
 
-We can use the `read_wlp_lexicon` function to read such data into a data
-frame:
-
-``` r
-library(yinarlingi)
-#> Loading required package: tidylex
-#> Loading required package: dplyr
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
-#> Loading required package: V8
-#> Loading required package: stringr
-#> Loading required package: tidyr
-
-# Yinarlingi provides a 'mini lexicon' with a few entries as extra data
-# Use system.file to locate the path to this file in your local computer
-lexicon_path <- system.file("extdata/wlp-lexicon_mini.txt", package = "yinarlingi")
-
-read_wlp_lexicon(lexicon_path)
-#> # A tibble: 25 x 3
-#>     line data                                                        code1
-#>    <int> <chr>                                                       <chr>
-#>  1     1 "\\me jampaly(pa) (N) (PV): (La,Wi,Y)"                      me   
-#>  2     2 "\\dm spatial: tactile: \\edm"                              dm   
-#>  3     3 "\\gl sharp, pointed \\egl"                                 gl   
-#>  4     4 "\\rv sharp \\erv"                                          rv   
-#>  5     5 "\\eg"                                                      eg   
-#>  6     6 "\\we Karlangu ka karri jampalypa ngulaju yiri-nyayirni. \… we   
-#>  7     7 "\\et The digging stick is sharp, that is very sharp point… et   
-#>  8     8 "\\eeg"                                                     eeg  
-#>  9     9 "\\ant jampilypa, munju \\eant"                             ant  
-#> 10    10 "\\cf jaarn-karri-mi, lirra jampalypa \\ecf"                cf   
-#> # ... with 15 more rows
-```
-
-We can see that this is the exact same result as calling the
-`read_lexicon` function from the tidylex package:
-
-``` r
-library(tidylex)
-
-read_lexicon(
-    file  = lexicon_path,
-    regex = "^\\\\([a-z]+)",
-    into  = "code1"
-)
-#> # A tibble: 25 x 3
-#>     line data                                                        code1
-#>    <int> <chr>                                                       <chr>
-#>  1     1 "\\me jampaly(pa) (N) (PV): (La,Wi,Y)"                      me   
-#>  2     2 "\\dm spatial: tactile: \\edm"                              dm   
-#>  3     3 "\\gl sharp, pointed \\egl"                                 gl   
-#>  4     4 "\\rv sharp \\erv"                                          rv   
-#>  5     5 "\\eg"                                                      eg   
-#>  6     6 "\\we Karlangu ka karri jampalypa ngulaju yiri-nyayirni. \… we   
-#>  7     7 "\\et The digging stick is sharp, that is very sharp point… et   
-#>  8     8 "\\eeg"                                                     eeg  
-#>  9     9 "\\ant jampilypa, munju \\eant"                             ant  
-#> 10    10 "\\cf jaarn-karri-mi, lirra jampalypa \\ecf"                cf   
-#> # ... with 15 more rows
-```
-
-### Test that Warlpiri dictionary entry data lines are well-ordered
-
-The a well-structured Warlpiri entry is defined as a
+A well-structured Warlpiri entry is defined as a
 [Nearley](https://nearley.js.org/) grammar (see full grammar
 [here](https://github.com/CoEDL/yinarlingi/blob/master/inst/structures/wlp_skeleton-simple.ne)),
 of which a snippet is shown below:
 
 ``` nearley
-entryBody       -> "org":? "dm":* "def":? "lat":? "gl":? "rv":? "cm":*
+entryBlock       -> "org":? "dm":* "def":? "lat":? "gl":? "rv":? "cm":*
                       (exampleBlock:+ | paradigmExample:+):?
                       crossRefs
 ```
@@ -154,15 +87,16 @@ requirement:
 ...
 </pre>
 
-Such data are caught by the `test_code1_ordered` function (notice
-`code1_ok` is `FALSE` on the third
-line):
+The yinarlingi test suite uses the `test_code1_ordered()` function to
+catch such cases (notice `code1_ok` is `FALSE` on the third line):
 
 ``` r
+library(yinarlingi)
+
+# Get local path to the yinarlingi-provided file, 'wlp-lexicon_invalid-sequence.txt'
 invalid_lexicon_path <- system.file("extdata/wlp-lexicon_invalid-sequence.txt", package = "yinarlingi")
 
-read_wlp_lexicon(invalid_lexicon_path) %>%
-    test_code1_ordered()
+test_code1_ordered(invalid_lexicon_path)
 #> # A tibble: 25 x 5
 #> # Groups:   me_start [1]
 #>     line data                          code1 me_start             code1_ok

@@ -1,13 +1,15 @@
 #' Test whether left-most codes appear in expected order within the entries
 #'
-#' @param wlp_df a Warlpiri lexicon data frame
+#' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #' @param return_all return the all from data frame or just entries with errors (default is \code{FALSE})
 #' @param grammar_file a Nearley grammar file (default is `wlp_skeleton-simple.ne`)
 #'
 #' @export
 #'
 
-test_code1_ordered <- function(wlp_df, return_all = FALSE, grammar_file = system.file("structures/wlp_skeleton-simple.ne", package = "yinarlingi")) {
+test_code1_ordered <- function(wlp_lexicon, return_all = FALSE, grammar_file = system.file("structures/wlp_skeleton-simple.ne", package = "yinarlingi")) {
+
+    wlp_df <- make_wlp_df(wlp_lexicon)
 
     if(grepl("yinarlingi/structures/wlp_skeleton-simple\\.ne", grammar_file)) {
 
