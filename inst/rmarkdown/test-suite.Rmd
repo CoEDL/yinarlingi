@@ -50,7 +50,8 @@ tests_failing <- sum(!yinarlingi_tests$passing) > 0
 
 ```{r Run GitLab helpers, eval = in_gitlab}
 # Note that file paths are relative to where test-suite.Rmd is being run!
-test_df$data %>%
+skeletonise_df(params$lexicon_path) %>%
+    .$data %>%
     str_trim() %>% 
     writeLines("wlp-skeleton.txt")
 
