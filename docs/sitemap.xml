@@ -25,7 +25,16 @@
     <loc>https://coedl.github.io/tidylex/reference/test_code1_ordered.html</loc>
   </url>
   <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_entries_unique.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_homophone_sequences.html</loc>
+  </url>
+  <url>
     <loc>https://coedl.github.io/tidylex/reference/test_inline_codes_ok.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_linestarts_ok.html</loc>
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/reference/test_pos_strings.html</loc>

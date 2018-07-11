@@ -162,22 +162,68 @@
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># Get local path to the yinarlingi-provided file, 'wlp-lexicon_invalid-sequence.txt'</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">invalid_lexicon_path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata/wlp-lexicon_invalid-sequence.txt"</span>, <span class="dt">package =</span> <span class="st">"yinarlingi"</span>)</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw"><a href="reference/test_code1_ordered.html">test_code1_ordered</a></span>(invalid_lexicon_path)</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; # A tibble: 25 x 5</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; # Groups:   me_start [1]</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;     line data                          code1 me_start             code1_ok</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;                         &lt;chr&gt; &lt;chr&gt;                &lt;lgl&gt;   </span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt;  1     1 "\\me jampaly(pa) (N) (PV): … me    "1 : \\me jampaly(p… TRUE    </span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;  2     2 "\\gl sharp, pointed \\egl"   gl    "1 : \\me jampaly(p… TRUE    </span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt;  3     3 "\\dm spatial: tactile: \\ed… dm    "1 : \\me jampaly(p… FALSE   </span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt;  4     4 "\\rv sharp \\erv"            rv    "1 : \\me jampaly(p… NA      </span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt;  5     5 "\\eg"                        eg    "1 : \\me jampaly(p… NA      </span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;  6     6 "\\we Karlangu ka karri jamp… we    "1 : \\me jampaly(p… NA      </span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;  7     7 "\\et The digging stick is s… et    "1 : \\me jampaly(p… NA      </span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt;  8     8 "\\eeg"                       eeg   "1 : \\me jampaly(p… NA      </span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt;  9     9 "\\ant jampilypa, munju \\ea… ant   "1 : \\me jampaly(p… NA      </span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 10    10 "\\cf jaarn-karri-mi, lirra … cf    "1 : \\me jampaly(p… NA      </span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; # ... with 15 more rows</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw"><a href="reference/test_code1_ordered.html">test_code1_ordered</a></span>(invalid_lexicon_path) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="st">    </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>() <span class="co"># For pretty display of table</span></a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">me_start</th>
+<th align="right">line</th>
+<th align="left">data</th>
+<th align="left">code1</th>
+<th align="left">code1_ok</th>
+<th align="left">error</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1 : jampaly(pa) (N) (PV): (La,Wi,Y)</td>
+<td align="right">1</td>
+<td align="left">jampaly(pa) (N) (PV): (La,Wi,Y)</td>
+<td align="left">me</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">2</td>
+<td align="left">sharp, pointed </td>
+<td align="left">gl</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right">3</td>
+<td align="left">spatial: tactile: </td>
+<td align="left">dm</td>
+<td align="left">FALSE</td>
+<td align="left">Unexpected code1</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">4</td>
+<td align="left">sharp </td>
+<td align="left">rv</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right">5</td>
+<td align="left"></td>
+<td align="left">eg</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">6</td>
+<td align="left">Karlangu ka karri jampalypa ngulaju yiri-nyayirni. [@@]</td>
+<td align="left">we</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

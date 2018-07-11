@@ -92,6 +92,7 @@ library(yinarlingi)
 # Get local path to the yinarlingi-provided file, 'wlp-lexicon_invalid-sequence.txt'
 invalid_lexicon_path <- system.file("extdata/wlp-lexicon_invalid-sequence.txt", package = "yinarlingi")
 
-test_code1_ordered(invalid_lexicon_path)
+test_code1_ordered(invalid_lexicon_path) %>%
+    knitr::kable() # For pretty display of table
 ```
 

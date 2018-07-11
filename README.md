@@ -15,7 +15,7 @@ routines (e.g. data validation, derived views), and also so that these
 tests can be run in a Continuous Testing/Continuous Deployment
 environment such as [GitLab pipelines](https://docs.gitlab.com/ee/ci/):
 
-![Pipeline](man/figures/pipeline.png)
+![](man/figures/pipeline.png)
 
 Yinarlingi is a Warlpiri word for echidna.
 
@@ -96,20 +96,15 @@ library(yinarlingi)
 # Get local path to the yinarlingi-provided file, 'wlp-lexicon_invalid-sequence.txt'
 invalid_lexicon_path <- system.file("extdata/wlp-lexicon_invalid-sequence.txt", package = "yinarlingi")
 
-test_code1_ordered(invalid_lexicon_path)
-#> # A tibble: 25 x 5
-#> # Groups:   me_start [1]
-#>     line data                          code1 me_start             code1_ok
-#>    <int> <chr>                         <chr> <chr>                <lgl>   
-#>  1     1 "\\me jampaly(pa) (N) (PV): … me    "1 : \\me jampaly(p… TRUE    
-#>  2     2 "\\gl sharp, pointed \\egl"   gl    "1 : \\me jampaly(p… TRUE    
-#>  3     3 "\\dm spatial: tactile: \\ed… dm    "1 : \\me jampaly(p… FALSE   
-#>  4     4 "\\rv sharp \\erv"            rv    "1 : \\me jampaly(p… NA      
-#>  5     5 "\\eg"                        eg    "1 : \\me jampaly(p… NA      
-#>  6     6 "\\we Karlangu ka karri jamp… we    "1 : \\me jampaly(p… NA      
-#>  7     7 "\\et The digging stick is s… et    "1 : \\me jampaly(p… NA      
-#>  8     8 "\\eeg"                       eeg   "1 : \\me jampaly(p… NA      
-#>  9     9 "\\ant jampilypa, munju \\ea… ant   "1 : \\me jampaly(p… NA      
-#> 10    10 "\\cf jaarn-karri-mi, lirra … cf    "1 : \\me jampaly(p… NA      
-#> # ... with 15 more rows
+test_code1_ordered(invalid_lexicon_path) %>%
+    knitr::kable() # For pretty display of table
 ```
+
+| me\_start                           | line | data                                                      | code1 | code1\_ok | error            |
+| :---------------------------------- | ---: | :-------------------------------------------------------- | :---- | :-------- | :--------------- |
+| 1 : jampaly(pa) (N) (PV): (La,Wi,Y) |    1 | jampaly(pa) (N) (PV): (La,Wi,Y)                           | me    | TRUE      | NA               |
+|                                     |    2 | sharp, pointed                                            | gl    | TRUE      | NA               |
+|                                     |    3 | spatial: tactile:                                         | dm    | FALSE     | Unexpected code1 |
+|                                     |    4 | sharp                                                     | rv    | NA        | NA               |
+|                                     |    5 |                                                           | eg    | NA        | NA               |
+|                                     |    6 | Karlangu ka karri jampalypa ngulaju yiri-nyayirni. \[@@\] | we    | NA        | NA               |
