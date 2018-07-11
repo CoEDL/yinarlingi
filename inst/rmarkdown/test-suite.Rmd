@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
 
 # Helper functions
 prettify_data_col <- . %>%
-    mutate_at(vars(matches("data")), funs(str_trunc(., width = 50, ellipsis = "\t...")))
+    mutate_at(vars(matches("data")), funs(str_trunc(., width = 35, ellipsis = "\t...")))
 
 badge_test <- function(is_passing) ifelse(is_passing, '<span class="badge value build-passing">passing</span>', '<span class="badge value build-failing">failing</span>')
 ```
@@ -76,7 +76,7 @@ yinarlingi_tests %>%
 
 # Failing tests
 
-`r if(tests_failing == FALSE) "None! 🎉🎉🎉"`
+`r if(tests_failing == FALSE) "None! \U1F389\U1F389\U1F389"`
 
 ```{r Show results tables from failing tests, eval = tests_failing}
 yinarlingi_tests %>%
@@ -86,15 +86,20 @@ yinarlingi_tests %>%
         
         ref_link <- paste0("https://coedl.github.io/yinarlingi/reference/", failing_table$f_name, ".html", collapse = "")
         
-        tagList(
+        tags$div(
+            # This exact class attribute should not be changed without planning
+            # It is how other scripts know whether the tests are failing (by grepping for 'class="failing-test-block"')
+            class = "failing-test-block",
             tags$h3(
                 id = failing_table$f_name,
                 failing_table$Title,
-                htmltools::tags$a(href=ref_link, target = "_blank", '(see full description)')
+                tags$a(href=ref_link, target = "_blank", '(see full description)')
             ),
-            failing_table$results[[1]] %>% ungroup %>% prettify_data_col() %>% datatable()
+            tags$div(
+                failing_table$results[[1]] %>% ungroup() %>% prettify_data_col() %>%
+                    datatable()
+            )
         )
-        
     }) %>%
     tagList()
 ```
@@ -103,6 +108,9 @@ yinarlingi_tests %>%
 h1 { font-size: 1.4em }
 h2 { font-size: 1.3em }
 h3 { font-size: 1.2em }
+
+.failing-test-block { margin-bottom:50px; }
+div.datatables { width:100% !important; height:auto !important; }
 
 .badge.tag { background-color: #4c4c4c; padding: 2px 4px 3px 7px; border-radius: 4px 0 0 4px; }
 
