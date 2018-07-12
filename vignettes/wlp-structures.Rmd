@@ -60,3 +60,14 @@ The list of regular expressions defined below can be retrieved using the `use_wl
 `r print_yin_file("wlp_regexes.R")`
 ```
 
+# Blacklisted characters
+
+The table below lists characters which are blacklisted as they break the processing pipeline (e.g. causes resulting XML to be invalid).
+
+```{r}
+system.file("structures/wlp_values_blacklist.csv", package = "yinarlingi") %>%
+    read_csv() %>% 
+    dplyr::mutate_all(dplyr::funs(stringr::str_replace_all(., "\\\\", "\\\\\\\\"))) %>%
+    kable()
+```
+

@@ -92,7 +92,7 @@
       <h1>Warlpiri dictionary structures</h1>
                         <h4 class="author">Nay San</h4>
             
-            <h4 class="date">2018-07-10</h4>
+            <h4 class="date">2018-07-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/coedl/yinarlingi/blob/master/vignettes/wlp-structures.Rmd"><code>vignettes/wlp-structures.Rmd</code></a></small>
       <div class="hidden name"><code>wlp-structures.Rmd</code></div>
@@ -637,6 +637,27 @@ crossRefs       -&gt; "ant":? "cf":? "csl":? "pvl":? "syn":?
 <a class="sourceLine" id="cb3-70" data-line-number="70"><span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb3-71" data-line-number="71">)</a></code></pre></div>
 </div>
+<div id="blacklisted-characters" class="section level1">
+<h1 class="hasAnchor">
+<a href="#blacklisted-characters" class="anchor"></a>Blacklisted characters</h1>
+<p>The table below lists characters which are blacklisted as they break the processing pipeline (e.g. causes resulting XML to be invalid).</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">regex</th>
+<th align="left">description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">\u0002</td>
+<td align="left">Start of Text (STX)</td>
+</tr>
+<tr class="even">
+<td align="left">\u0005</td>
+<td align="left">Enquiry (ENQ)</td>
+</tr>
+</tbody>
+</table>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -649,6 +670,7 @@ crossRefs       -&gt; "ant":? "cf":? "csl":? "pvl":? "syn":?
       <li><a href="#block-attributes-grammar">Block attributes grammar</a></li>
       <li><a href="#entry-structure-grammar">Entry structure grammar</a></li>
       <li><a href="#regular-expressions">Regular expressions</a></li>
+      <li><a href="#blacklisted-characters">Blacklisted characters</a></li>
       </ul>
 </div>
       </div>

@@ -1,0 +1,3 @@
+regex,description
+\u0002,Start of Text (STX)
+\u0005,Enquiry (ENQ)
