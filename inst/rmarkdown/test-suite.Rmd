@@ -1,6 +1,6 @@
 ---
 title: "Warlpiri dictionary test suite"
-date: 'Generated `r lubridate::now(tzone="Australia/Sydney")` AEST'
+date: 'Generated `r format(Sys.time(), "%F %R UTC%z")`'
 output: 
   html_document: 
     toc: yes
