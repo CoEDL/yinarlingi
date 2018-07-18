@@ -23,7 +23,7 @@ alphabetise_wlp_file <- function(wlp_lexicon, output_file) {
                 i_nohyphen = str_extract(parent, "^-") %>% is.na() %>% `!`,
                 section    = sort_key  %>% str_to_lower() %>% str_extract("^(ng|ny|rd|[a-z])")
             ) %>%
-            arrange(section, sort_key, i_upper, i_nohyphen, hm_no, line) %>%
+            arrange(section, sort_key, i_nohyphen, i_upper, hm_no, line) %>%
             select(-parent, -section, -sort_key, -i_upper, -i_nohyphen, -hm_no)
     }
 
