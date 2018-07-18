@@ -22,7 +22,7 @@ test_blacklist_chars <- function(wlp_lexicon) {
 
     result_df <-
         wlp_lexicon %>%
-        make_wlp_df() %>%
+        skeletonise_df() %>%
         filter(str_detect(data, pattern = all_regex))
 
     if(nrow(result_df) > 0) {

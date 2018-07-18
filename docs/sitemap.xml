@@ -10,6 +10,9 @@
     <loc>https://coedl.github.io/tidylex/reference/alphabetise_wlp_file.html</loc>
   </url>
   <url>
+    <loc>https://coedl.github.io/tidylex/reference/pipe.html</loc>
+  </url>
+  <url>
     <loc>https://coedl.github.io/tidylex/reference/read_wlp_lexicon.html</loc>
   </url>
   <url>
@@ -23,6 +26,9 @@
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/reference/test_block_attributes.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_brackets_balanced.html</loc>
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/reference/test_code1_ordered.html</loc>
@@ -41,6 +47,9 @@
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/reference/test_pos_strings.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_reversals_ok.html</loc>
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/reference/test_values_nonempty.html</loc>

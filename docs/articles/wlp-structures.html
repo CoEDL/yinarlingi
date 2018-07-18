@@ -92,7 +92,7 @@
       <h1>Warlpiri dictionary structures</h1>
                         <h4 class="author">Nay San</h4>
             
-            <h4 class="date">2018-07-12</h4>
+            <h4 class="date">2018-07-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/coedl/yinarlingi/blob/master/vignettes/wlp-structures.Rmd"><code>vignettes/wlp-structures.Rmd</code></a></small>
       <div class="hidden name"><code>wlp-structures.Rmd</code></div>
@@ -643,7 +643,7 @@ crossRefs       -&gt; "ant":? "cf":? "csl":? "pvl":? "syn":?
 <p>The table below lists characters which are blacklisted as they break the processing pipeline (e.g. causes resulting XML to be invalid).</p>
 <table class="table">
 <thead><tr class="header">
-<th align="left">regex</th>
+<th align="left">regex (R)</th>
 <th align="left">description</th>
 </tr></thead>
 <tbody>
@@ -654,6 +654,10 @@ crossRefs       -&gt; "ant":? "cf":? "csl":? "pvl":? "syn":?
 <tr class="even">
 <td align="left">\u0005</td>
 <td align="left">Enquiry (ENQ)</td>
+</tr>
+<tr class="odd">
+<td align="left">(\\*|%)#(\\*|%)</td>
+<td align="left">Placeholder sense/homophone</td>
 </tr>
 </tbody>
 </table>

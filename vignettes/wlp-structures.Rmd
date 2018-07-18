@@ -67,7 +67,8 @@ The table below lists characters which are blacklisted as they break the process
 ```{r}
 system.file("structures/wlp_values_blacklist.csv", package = "yinarlingi") %>%
     read_csv() %>% 
-    dplyr::mutate_all(dplyr::funs(stringr::str_replace_all(., "\\\\", "\\\\\\\\"))) %>%
+    dplyr::mutate_all(dplyr::funs(stringr::str_replace_all(., "\\*", "\\\\*"))) %>%
+    dplyr::mutate_all(dplyr::funs(stringr::str_replace_all(., "\\\\u", "\\\\\\\\u"))) %>%
+    dplyr::rename(`regex (R)` = regex) %>% 
     kable()
 ```
-
