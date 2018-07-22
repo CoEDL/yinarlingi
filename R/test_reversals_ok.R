@@ -12,8 +12,9 @@ test_reversals_ok <- function(wlp_lexicon) {
 
     rv_test_func <- function(rv_string) {
         list(
-            "consecutive carets"         = "\\^{2,}",
-            "un-careted starting bracket" = "(?<!\\^)\\["
+            "consecutive carets"          = "\\^{2,}",
+            "un-careted starting bracket" = "(?<!\\^)\\[",
+            "final comma"                 = ",\\s*\\\\erv"
         ) %>%
         keep(~ str_detect(rv_string, .)) %>%
         names(.) %>%
