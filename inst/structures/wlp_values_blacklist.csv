@@ -1,4 +1,5 @@
 regex,description
-\u0002,Start of Text (STX)
-\u0005,Enquiry (ENQ)
-(\\\\*|%)#(\\\\*|%),Placeholder sense/homophone
+\u0002,Start of Text (STX) character
+\u0005,Enquiry (ENQ) character
+(\*|%)#(\*|%),Placeholder sense/homophone
+\\(?![a-z]|\[),Stray backslash
