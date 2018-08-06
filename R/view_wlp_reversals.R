@@ -6,6 +6,10 @@
 #' @importFrom purrr map
 #'
 #' @export
+#'
+#' @examples
+#' system.file("extdata/wlp-lexicon_bigger.txt", package = "yinarlingi") %>%
+#'    view_wlp_reversals()
 
 view_wlp_reversals <- function(wlp_lexicon) {
 

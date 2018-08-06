@@ -12,3 +12,7 @@ view_wlp_reversals(wlp_lexicon)
 \description{
 View English-to-Warlpiri finder list
 }
+\examples{
+system.file("extdata/wlp-lexicon_bigger.txt", package = "yinarlingi") \%>\%
+   view_wlp_reversals()
+}
