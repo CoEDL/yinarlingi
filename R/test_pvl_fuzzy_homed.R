@@ -15,12 +15,12 @@ test_pvl_fuzzy_homed <- function(wlp_lexicon) {
 
     wlp_df <- make_wlp_df(wlp_lexicon)
 
-    whitelist_df <- wlp_df %>%
+    whitelist <- wlp_df %>%
         filter(code1 %in% c("me", "sse")) %>%
         mutate(value = str_extract(data, use_wlp_regex("me_sse_value"))) %>%
-        select(value)
+        pull(value)
 
-    preverbs_df <- wlp_df %>%
+    wlp_df %>%
         filter(code1 == "pvl") %>%
         mutate(pvl_form = data %>%
                    str_remove_all(use_wlp_regex("all_codes")) %>%
@@ -29,15 +29,12 @@ test_pvl_fuzzy_homed <- function(wlp_lexicon) {
         ) %>%
         separate_rows(pvl_form, sep = ",\\s?") %>%
         mutate(value = map(pvl_form, make_fuzzy_forms)) %>%
-        unnest()
-
-    anti_join(
-        x  = preverbs_df,
-        y  = whitelist_df,
-        by = "value"
-    ) %>%
-    group_by(line, data) %>%
-    summarise(orphaned_pvls = paste0(unique(pvl_form), collapse = ", "))
+        unnest() %>%
+        mutate(value_ok = value %in% whitelist) %>%
+        group_by(line, data, pvl_form) %>%
+        filter(all(!value_ok)) %>%
+        group_by(line, data) %>%
+        summarise(orphaned_pvls = paste0(unique(pvl_form), collapse = ", "))
 
 }
 
