@@ -9,15 +9,14 @@ def,a formal definition of the headword,def; edef
 dm,semantic domain,dm; edm
 eg,beginning of a block of example sentences,eg
 eeg,end of a block of example sentences,eeg
-et,English translation of a \we,et; ewe
-et,English translation of a \wed,et; ewed
+et,English translation of a we field,et; ewe
+et,English translation of a wed field,et; ewed
 gl,"short, one word or simple phrase, glosses",gl; egl
 glo,"old gloss, kept for data provenance",glo; eglo
-lat,Latin Name,lat; elat
+lat,Latin Name (updated in 2016),lat; elat
 lato,"old Latin name, kept for data provenance",lato; elato
 me,start of a block for a main entry,me
 eme,end of a block for a main entry,eme
-nlat,contains up-to-date (2016) corrected Latin names of plants/animals,nlat; enlat
 note,marks a note to compiler to check data,note; enote
 org,information about a word's origin,org; eorg
 pdx,start of a block for a paradigm example,pdx
