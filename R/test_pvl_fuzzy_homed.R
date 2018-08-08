@@ -18,7 +18,8 @@ test_pvl_fuzzy_homed <- function(wlp_lexicon) {
     whitelist <- wlp_df %>%
         filter(code1 %in% c("me", "sse")) %>%
         mutate(value = str_extract(data, use_wlp_regex("me_sse_value"))) %>%
-        pull(value)
+        pull(value) %>%
+        str_remove_all("\\*\\d\\*")
 
     wlp_df %>%
         filter(code1 == "pvl") %>%
