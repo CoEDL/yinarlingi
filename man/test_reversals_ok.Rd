@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_reversals_ok.R
 \name{test_reversals_ok}
 \alias{test_reversals_ok}
-\title{Test that reversal lines are well-formed}
+\title{Test that reversal mark up in reversal and gloss lines are well-formed}
 \usage{
 test_reversals_ok(wlp_lexicon)
 }
@@ -10,5 +10,5 @@ test_reversals_ok(wlp_lexicon)
 \item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
 }
 \description{
-Test that reversal lines are well-formed
+Test that reversal mark up in reversal and gloss lines are well-formed
 }

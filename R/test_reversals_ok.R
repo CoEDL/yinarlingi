@@ -1,4 +1,4 @@
-#' Test that reversal lines are well-formed
+#' Test that reversal mark up in reversal and gloss lines are well-formed
 #'
 #' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #'
@@ -14,7 +14,7 @@ test_reversals_ok <- function(wlp_lexicon) {
         list(
             "consecutive carets"          = "\\^{2,}",
             "un-careted starting bracket" = "(?<!\\^)\\[",
-            "final comma"                 = ",\\s*\\\\erv"
+            "final comma"                 = ",\\s*\\\\e(rv|gl)"
         ) %>%
         keep(~ str_detect(rv_string, .)) %>%
         names(.) %>%
@@ -23,7 +23,7 @@ test_reversals_ok <- function(wlp_lexicon) {
 
     wlp_lexicon %>%
         make_wlp_df() %>%
-        filter(code1 == "rv") %>%
+        filter(code1 %in% c("rv", "gl")) %>%
         mutate(
             data  = str_remove_all(data, use_wlp_regex("source_codes")),
             error = map_chr(data, rv_test_func)
