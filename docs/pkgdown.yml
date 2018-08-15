@@ -1,8 +1,11 @@
-pandoc: 2.1.2
-pkgdown: 1.0.0
+pandoc: 1.19.2.1
+pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
+  wlp-git_problemsolving: wlp-git_problemsolving.html
+  wlp-git_workflow: wlp-git_workflow.html
   wlp-onboarding: wlp-onboarding.html
+  wlp-setup: wlp-setup.html
   wlp-structures: wlp-structures.html
   yinarlingi: yinarlingi.html
 urls:
