@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -31,6 +33,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 <meta property="og:title" content="Function reference" />
+
 
 
 <!-- mathjax -->
@@ -92,7 +95,13 @@
       <a href="../articles/yinarlingi.html">Introduction</a>
     </li>
     <li>
-      <a href="../articles/wlp-onboarding.html">Onboarding (for new project members)</a>
+      <a href="../articles/wlp-setup.html">Set up (software and accounts)</a>
+    </li>
+    <li>
+      <a href="../articles/wlp-git_workflow.html">Git workflow tutorial</a>
+    </li>
+    <li>
+      <a href="../articles/wlp-git_problemsolving.html">Git problem-solving tutorial</a>
     </li>
   </ul>
 </li>
@@ -123,6 +132,7 @@
     <table class="ref-index">
 
     <colgroup>
+      
       <col class="alias" />
       <col class="title" />
     </colgroup>
@@ -135,79 +145,91 @@
         </th>
       </tr>
       <tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_all_codes_defined.html">test_all_codes_defined()</a></code> </p>
         </td>
         <td><p>Test whether all left-most codes are defined (i.e. no stray codes from typos)</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_blacklist_chars.html">test_blacklist_chars()</a></code> </p>
         </td>
         <td><p>Test that no blacklisted characters appear in the lexicon</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_block_attributes.html">test_block_attributes()</a></code> </p>
         </td>
         <td><p>Test that listed attributes for entry blocks are well-formatted</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_brackets_balanced.html">test_brackets_balanced()</a></code> </p>
         </td>
         <td><p>Test that all brackets and parentheses are well-balanced</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_code1_ordered.html">test_code1_ordered()</a></code> </p>
         </td>
         <td><p>Test whether left-most codes appear in expected order within the entries</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_entries_unique.html">test_entries_unique()</a></code> </p>
         </td>
         <td><p>Test that all main- and sub-entry forms are unique</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_homophone_sequences.html">test_homophone_sequences()</a></code> </p>
         </td>
         <td><p>Test that all homophones numbers well-sequenced across the homophonous entry forms</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_inline_codes_ok.html">test_inline_codes_ok()</a></code> </p>
         </td>
         <td><p>Test whether all expected codes (and only these) codes appear on a given line</p></td>
       </tr><tr>
-        <!--  -->
+        
+        <td>
+          <p><code><a href="test_latin_ok.html">test_latin_ok()</a></code> </p>
+        </td>
+        <td><p>Test that latin/scientific name(s) lines are well-formed</p></td>
+      </tr><tr>
+        
         <td>
           <p><code><a href="test_linestarts_ok.html">test_linestarts_ok()</a></code> </p>
         </td>
         <td><p>Test that all non-empty lines start with either a backslash or <code>@</code></p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_pos_strings.html">test_pos_strings()</a></code> </p>
         </td>
         <td><p>Test that parts of speech values within main- and sub-entry lines are well-formatted</p></td>
       </tr><tr>
-        <!--  -->
+        
+        <td>
+          <p><code><a href="test_pvl_fuzzy_homed.html">test_pvl_fuzzy_homed()</a></code> </p>
+        </td>
+        <td><p>Test that cross-references to preverbs have a fuzzily-matching parent</p></td>
+      </tr><tr>
+        
         <td>
           <p><code><a href="test_reversals_ok.html">test_reversals_ok()</a></code> </p>
         </td>
-        <td><p>Test that reversal lines are well-formed</p></td>
+        <td><p>Test that reversal mark up in reversal and gloss lines are well-formed</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_values_nonempty.html">test_values_nonempty()</a></code> </p>
         </td>
         <td><p>Test whether all non-block codes have some content in them</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="test_xrefs_homed.html">test_xrefs_homed()</a></code> </p>
         </td>
@@ -221,7 +243,7 @@
         </th>
       </tr>
       <tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="view_wlp_reversals.html">view_wlp_reversals()</a></code> </p>
         </td>
@@ -235,31 +257,31 @@
         </th>
       </tr>
       <tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="read_wlp_lexicon.html">read_wlp_lexicon()</a></code> </p>
         </td>
         <td><p>Read in and optionally pre-process the Warlpiri lexicon file</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="skeletonise_df.html">skeletonise_df()</a></code> </p>
         </td>
         <td><p>Discard lines whose codes do not occur in the Warlpiri dictionary skeleton grammar</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="add_wlp_groups.html">add_wlp_groups()</a></code> </p>
         </td>
         <td><p>Add grouping columns to a Warlpiri lexicon data frame</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="use_wlp_regex.html">use_wlp_regex()</a></code> </p>
         </td>
         <td><p>Use a pre-defined regular expression for the Warlpiri Dictionary</p></td>
       </tr><tr>
-        <!--  -->
+        
         <td>
           <p><code><a href="alphabetise_wlp_file.html">alphabetise_wlp_file()</a></code> </p>
         </td>

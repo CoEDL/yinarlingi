@@ -43,10 +43,16 @@
     <loc>https://coedl.github.io/tidylex/reference/test_inline_codes_ok.html</loc>
   </url>
   <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_latin_ok.html</loc>
+  </url>
+  <url>
     <loc>https://coedl.github.io/tidylex/reference/test_linestarts_ok.html</loc>
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/reference/test_pos_strings.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_pvl_fuzzy_homed.html</loc>
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/reference/test_reversals_ok.html</loc>
@@ -64,7 +70,16 @@
     <loc>https://coedl.github.io/tidylex/reference/view_wlp_reversals.html</loc>
   </url>
   <url>
+    <loc>https://coedl.github.io/tidylex/articles/wlp-git_problemsolving.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/articles/wlp-git_workflow.html</loc>
+  </url>
+  <url>
     <loc>https://coedl.github.io/tidylex/articles/wlp-onboarding.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/articles/wlp-setup.html</loc>
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/articles/wlp-structures.html</loc>

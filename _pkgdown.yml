@@ -40,8 +40,12 @@ navbar:
     menu:
       - text: Introduction
         href: articles/yinarlingi.html
-      - text: Onboarding (for new project members)
-        href: articles/wlp-onboarding.html
+      - text: Set up (software and accounts)
+        href: articles/wlp-setup.html
+      - text: Git workflow tutorial
+        href: articles/wlp-git_workflow.html
+      - text: Git problem-solving tutorial
+        href: articles/wlp-git_problemsolving.html  
   right:
   - icon: fa-github fa-lg
     href: https://github.com/coedl/yinarlingi
