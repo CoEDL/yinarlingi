@@ -7,6 +7,7 @@
 #' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #'
 #' @importFrom tidyr separate_rows
+#' @importFrom purrr keep
 #'
 #' @export
 #'
@@ -18,8 +19,20 @@ test_pvl_fuzzy_homed <- function(wlp_lexicon) {
     whitelist <- wlp_df %>%
         filter(code1 %in% c("me", "sse")) %>%
         mutate(value = str_extract(data, use_wlp_regex("me_sse_value"))) %>%
-        pull(value) %>%
-        str_remove_all("\\*\\d\\*")
+        pull(value)
+
+    # Allowing extra fuzziness for 11th hour fixing of the lexicon
+    whitelist <- c(
+        whitelist,
+        # Remove all homophone numbers
+        whitelist %>% keep(~ str_detect(., "\\*\\d\\*")) %>% str_remove_all("\\*\\d\\*") %>% unique()
+    )
+
+    whitelist <- c(
+        whitelist,
+        # Remove all non-alphabetic characters
+        whitelist %>% str_remove_all("[^a-z|A-Z]+") %>% unique()
+    )
 
     wlp_df %>%
         filter(code1 == "pvl") %>%
@@ -43,6 +56,7 @@ make_fuzzy_forms <- function(pvl_form) {
 
     pvl_form %>%
         str_remove("-$") %>%
-        paste(c("", "ku", "-ku", "pa", "(pa)"), sep = "")
+        paste(c("", "ku", "-ku", "pa", "(pa)"), sep = "") %>%
+        c(., str_remove_all(., "[^a-z|A-Z]+") %>% unique())
 
 }
