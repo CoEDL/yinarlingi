@@ -98,7 +98,7 @@
       <h1>Git problem solving</h1>
                         <h4 class="author">Ellison Luk</h4>
             
-            <h4 class="date">2018-08-15</h4>
+            <h4 class="date">2018-08-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/coedl/yinarlingi/blob/master/vignettes/wlp-git_problemsolving.Rmd"><code>vignettes/wlp-git_problemsolving.Rmd</code></a></small>
       <div class="hidden name"><code>wlp-git_problemsolving.Rmd</code></div>
@@ -113,22 +113,22 @@
 <p>A <code>merge conflict</code> arises when you try to <code>merge</code> two branches with contradictory lines, which may arise when two collaborators edit the same line. This can be avoided if your team is clear on what lines each member is working on, but Sourcetree allows you to fix them before completing the merge.</p>
 <p>As an example, let’s make one edit: changing one line to a line, and commit that (in a <code>fix-xme</code> branch)</p>
 <div class="figure">
-<img src="figures/git-ps_merge-conflict/sourcetree_conflict-01.PNG" alt="Commit change"><p class="caption">Commit change</p>
+<img src="figures/git-ps_merge-conflict/sourcetree_conflict-01.png" alt="Commit change"><p class="caption">Commit change</p>
 </div>
 <p>Checkout <code>development</code> branch, refresh the repository status and pull the latest changes (1 has been flagged).</p>
-<p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-02.PNG" alt="Checkout development"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-03.png" alt="Refresh status"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-04.png" alt="Pull branch"></p>
+<p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-02.png" alt="Checkout development"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-03.png" alt="Refresh status"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-04.png" alt="Pull branch"></p>
 <p>Now attempt to merge the <code>fix-xme</code> branch into `development branch.</p>
-<p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-05.PNG" alt="Merge"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-06.png" alt="Confirm Merge"></p>
+<p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-05.png" alt="Merge"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-06.png" alt="Confirm Merge"></p>
 <p>Sourcetree has detected a conflict, and has flagged the conflicts in the files. You can follow the window’s advice to resolve them with Sourcetree, but you can also do it in the text editor.</p>
 <p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-07.png" alt="Conflict detected"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-08.png" alt="Resolve conflicts menu"></p>
 <p>Let’s resolve them in the text editor. Open the file with the detected conflicts and search for “&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD”. Each conflict will have this open tag (<code>HEAD</code> refers to the remote version; i.e. the version that your collaborator(s) created). The closing tag will be labelled with your branch: the version that you created and are trying to merge with.</p>
 <div class="figure">
-<img src="figures/git-ps_merge-conflict/sourcetree_conflict-09.PNG" alt="Resolve conflict in text"><p class="caption">Resolve conflict in text</p>
+<img src="figures/git-ps_merge-conflict/sourcetree_conflict-09.png" alt="Resolve conflict in text"><p class="caption">Resolve conflict in text</p>
 </div>
 <p>Confer with your collaborators on how you want to resolve the conflict, delete the tags and move on to the next conflict. When you have finished resolving the conflicts, save the file(s) and commit to the branch you are merging into (i.e. <code>development</code>).</p>
 <p>??? You may run into some weird files in your <code>File Status</code> tab: leave these unstaged, and make sure the file you want to stage has the <strong>yellow square icon</strong>. Keep an eye on the diff to make sure that you are committing the correct changes.</p>
 <div class="figure">
-<img src="figures/git-ps_merge-conflict/sourcetree_conflict-10a.PNG" alt="Unstaging conflicted files"><p class="caption">Unstaging conflicted files</p>
+<img src="figures/git-ps_merge-conflict/sourcetree_conflict-10a.png" alt="Unstaging conflicted files"><p class="caption">Unstaging conflicted files</p>
 </div>
 <p>Now you can commit (you can leave the commit message as is).</p>
 <div class="figure">
@@ -138,7 +138,7 @@
 <p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-11.png" alt="Merge/commit successful"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-12.png" alt="Pushing merged branch"></p>
 <p>You can now check to see that your commit has made it on the Git web user interface.</p>
 <div class="figure">
-<img src="figures/git-ps_merge-conflict/sourcetree_conflict-13.PNG" alt="Git UI commit successful"><p class="caption">Git UI commit successful</p>
+<img src="figures/git-ps_merge-conflict/sourcetree_conflict-13.png" alt="Git UI commit successful"><p class="caption">Git UI commit successful</p>
 </div>
 </div>
 <div id="undoing-commits" class="section level2">

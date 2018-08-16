@@ -98,7 +98,7 @@
       <h1>Git workflow tutorial</h1>
                         <h4 class="author">Ellison Luk</h4>
             
-            <h4 class="date">2018-08-15</h4>
+            <h4 class="date">2018-08-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/coedl/yinarlingi/blob/master/vignettes/wlp-git_workflow.Rmd"><code>vignettes/wlp-git_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>wlp-git_workflow.Rmd</code></div>
@@ -120,7 +120,7 @@
 </h2>
 <p>This will be what your interface will look like immediately after cloning.</p>
 <div class="figure">
-<img src="figures/git-wf_step-0/sourcetree_mini-wlp.PNG" alt="Default"><p class="caption">Default</p>
+<img src="figures/git-wf_step-0/sourcetree_mini-wlp.png" alt="Default"><p class="caption">Default</p>
 </div>
 <p><code>Refresh</code> your <code>repository status</code> by selecting it from this dropdown menu.</p>
 <div class="figure">
@@ -135,7 +135,7 @@
 <a href="#step-1-check-out-and-create-branches" class="anchor"></a>Step 1: <code>Check out</code> and create branches</h2>
 <p>A <code>branch</code> is an instantiation of the repository that you can make changes on, without affecting the rest of the project. This project already has <code>remote branches</code> (they are not tracked by Sourcetree yet), which we can pull to make them <code>local</code>ly available. Moving from one <code>branch</code> to another is known as a <code>checkout</code>.</p>
 <p>On the left side pane, select <code>Remotes</code>, <code>origin</code>, and then double-click <code>development</code>. A window will pop up confirming that you would like to <code>Checkout New Branch</code>. Selecting <code>OK</code> with the box ticked, this will create a new <code>local</code> branch called <code>development</code>, which will have all the developments and changes from that branch on your computer.</p>
-<p><img src="figures/git-wf_step-1/sourcetree_remote-1.png" alt="Select Remote Branch"><img src="figures/git-wf_step-1/sourcetree_remote-2.PNG" alt="Checkout Remote Branch"><img src="figures/git-wf_step-1/sourcetree_remote-3.PNG" alt="Confirm Branch"><img src="figures/git-wf_step-1/sourcetree_remote-4.PNG" alt="Local Branch Created"></p>
+<p><img src="figures/git-wf_step-1/sourcetree_remote-1.png" alt="Select Remote Branch"><img src="figures/git-wf_step-1/sourcetree_remote-2.png" alt="Checkout Remote Branch"><img src="figures/git-wf_step-1/sourcetree_remote-3.png" alt="Confirm Branch"><img src="figures/git-wf_step-1/sourcetree_remote-4.png" alt="Local Branch Created"></p>
 <p>Now, let’s create a new <code>branch</code> from this <code>development</code> branch. To create a new <code>branch</code>, select the <code>branch</code> icon: give it a useful name that tells us exactly what it is for (we will use <code>fix-reversals</code>), and confirm. Your new branch will now appear on the left under your list of branches. You will now also see on the <code>log</code> that a new branch has been created.</p>
 <p>Keep in mind that you should still try to minimise conflicts with other members of the team by restricting the scope of your changes to a single issue (e.g. only dealing with gloss lines in a dictionary file). Though conflicts will be inevitable, you can effectively pre-empt them by just sticking to your own part of the project!</p>
 <p><img src="figures/git-wf_step-1/sourcetree_branch-1.png" alt="Select Branch"><img src="figures/git-wf_step-1/sourcetree_branch-2.png" alt="Confirm Branch"><img src="figures/git-wf_step-1/sourcetree_branch-3.png" alt="Branch Created"></p>
@@ -163,7 +163,7 @@ We have `\gl` lines to indicate the gloss of a Warlpiri word, and `\rv` lines to
 <img src="figures/git-wf_step-2/lex_change-4.png" alt="Diffing changes"><p class="caption">Diffing changes</p>
 </div>
 <p>Once you have completed your changes for the day (or for the entire issue), make sure you keep a note of where those files are saved. Script files belong inside the <code>mini-wlp/scripts</code> folder, and lexicon files inside the <code>mini-wlp/src</code> folder.</p>
-<p><img src="figures/git-wf_step-2/save_changes-2.PNG" alt="Script file"><img src="figures/git-wf_step-2/save_changes-1.PNG" alt="Lexicon file"></p>
+<p><img src="figures/git-wf_step-2/save_changes-2.png" alt="Script file"><img src="figures/git-wf_step-2/save_changes-1.png" alt="Lexicon file"></p>
 <p>After we have finished making our changes, we can bring all our changes from the test file into the master file.</p>
 </div>
 <div id="step-3-commit-changes" class="section level2">
@@ -201,7 +201,7 @@ We have `\gl` lines to indicate the gloss of a Warlpiri word, and `\rv` lines to
 <h2 class="hasAnchor">
 <a href="#step-5-pull-again" class="anchor"></a>Step 5 <code>Pull</code> again</h2>
 <p>Refresh your repository status. Sourcetree will let you know if there is anything new to pull (in our case, nothing).</p>
-<p><img src="figures/git-wf_step-5/sourcetree_refresh-status.png" alt="Refresh Repository Status"><img src="figures/git-wf_step-5/sourcetree_pull.PNG" alt="Pull again"></p>
+<p><img src="figures/git-wf_step-5/sourcetree_refresh-status.png" alt="Refresh Repository Status"><img src="figures/git-wf_step-5/sourcetree_pull.png" alt="Pull again"></p>
 </div>
 <div id="step-6-merging-branches" class="section level2">
 <h2 class="hasAnchor">
@@ -215,7 +215,7 @@ We have `\gl` lines to indicate the gloss of a Warlpiri word, and `\rv` lines to
 </h2>
 <p>Now we are ready to <code>push</code> our files into the remote repository. Select <code>Push</code> and a popup window will ask you which branches you want to push. If you would like your <code>feature branch</code> to be available to our collaboraters, you may select that to be pushed to a remote branch of the same name.</p>
 <p>For our purposes, since our work has been merged into the <code>development</code> branch, we can simply select that.</p>
-<p><img src="figures/git-wf_step-7/sourcetree_push-1.PNG" alt="Select Push"><img src="figures/git-wf_step-7/sourcetree_push-2.PNG" alt="Select branches to push"><img src="figures/git-wf_step-7/sourcetree_push-3.PNG" alt="Confirm Push"></p>
+<p><img src="figures/git-wf_step-7/sourcetree_push-1.png" alt="Select Push"><img src="figures/git-wf_step-7/sourcetree_push-2.png" alt="Select branches to push"><img src="figures/git-wf_step-7/sourcetree_push-3.png" alt="Confirm Push"></p>
 </div>
 <div id="step-9-delete-branch" class="section level2">
 <h2 class="hasAnchor">
