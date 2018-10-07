@@ -34,6 +34,22 @@ test_pvl_fuzzy_homed <- function(wlp_lexicon) {
         whitelist %>% str_remove_all("[^a-z|A-Z]+") %>% unique()
     )
 
+    # append preverbs to start of parent verb
+    # see https://github.com/CoEDL/yinarlingi/issues/2
+    whitelist <- c(
+        whitelist,
+        wlp_df %>%
+            add_wlp_groups(c("me_only")) %>%
+            ungroup %>% filter(code1 == "pvl") %>%
+            mutate(pvl = data %>% str_remove_all(use_wlp_regex("all_codes")) %>%
+                       str_remove_all(use_wlp_regex("source_codes")) %>%
+                       str_trim(), me = str_extract(me_start, use_wlp_regex("me_sse_value"))) %>%
+            separate_rows(pvl, sep = ",\\s?") %>%
+            mutate(full_form = paste(pvl, me, sep = "-") %>%
+                       str_replace_all("-+", "-")) %>%
+            pull(full_form)
+    )
+
     wlp_df %>%
         filter(code1 == "pvl") %>%
         mutate(pvl_form = data %>%
