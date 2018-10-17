@@ -5,8 +5,8 @@
 \title{Discard lines whose codes do not occur in the Warlpiri dictionary skeleton grammar}
 \usage{
 skeletonise_df(wlp_lexicon,
-  grammar_file = system.file("structures/wlp_skeleton-simple.ne", package
-  = "yinarlingi"))
+  grammar_file = system.file("structures/wlp_skeleton-simple.ne", package =
+  "yinarlingi"))
 }
 \arguments{
 \item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}

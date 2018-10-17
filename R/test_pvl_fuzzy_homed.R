@@ -7,7 +7,7 @@
 #' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #'
 #' @importFrom tidyr separate_rows
-#' @importFrom purrr keep
+#' @importFrom purrr keep map2_lgl
 #'
 #' @export
 #'
@@ -36,35 +36,51 @@ test_pvl_fuzzy_homed <- function(wlp_lexicon) {
 
     # append preverbs to start of parent verb
     # see https://github.com/CoEDL/yinarlingi/issues/2
-    whitelist <- c(
-        whitelist,
-        wlp_df %>%
-            add_wlp_groups(c("me_only")) %>%
-            ungroup %>% filter(code1 == "pvl") %>%
-            mutate(pvl = data %>% str_remove_all(use_wlp_regex("all_codes")) %>%
-                       str_remove_all(use_wlp_regex("source_codes")) %>%
-                       str_trim(), me = str_extract(me_start, use_wlp_regex("me_sse_value"))) %>%
-            separate_rows(pvl, sep = ",\\s?") %>%
-            mutate(full_form = paste(pvl, me, sep = "-") %>%
-                       str_replace_all("-+", "-")) %>%
-            pull(full_form)
-    )
+    # whitelist <- c(
+    #     whitelist,
+    #     wlp_df %>%
+    #         add_wlp_groups(c("me_only")) %>%
+    #         ungroup %>% filter(code1 == "pvl") %>%
+    #         mutate(pvl = data %>% str_remove_all(use_wlp_regex("all_codes")) %>%
+    #                    str_remove_all(use_wlp_regex("source_codes")) %>%
+    #                    str_trim(), me = str_extract(me_start, use_wlp_regex("me_sse_value"))) %>%
+    #         separate_rows(pvl, sep = ",\\s?") %>%
+    #         mutate(full_form = paste(pvl, me, sep = "-") %>%
+    #                    str_replace_all("-+", "-")) %>%
+    #         pull(full_form)
+    # )
 
     wlp_df %>%
+        add_wlp_groups("me_only") %>%
+        ungroup %>%
         filter(code1 == "pvl") %>%
-        mutate(pvl_form = data %>%
+        mutate(
+            pvl_form = data %>%
                    str_remove_all(use_wlp_regex("all_codes")) %>%
                    str_remove_all(use_wlp_regex("source_codes")) %>%
                    str_trim()
         ) %>%
         separate_rows(pvl_form, sep = ",\\s?") %>%
-        mutate(value = map(pvl_form, make_fuzzy_forms)) %>%
+        mutate(
+            value = map(pvl_form, make_fuzzy_forms),
+            prefixed_value =
+                paste0(
+                    pvl_form,
+                    "-",
+                    str_extract(me_start, use_wlp_regex("me_sse_value"))
+                ) %>% str_replace_all("-+", "-")
+        ) %>%
         unnest() %>%
-        mutate(value_ok = value %in% whitelist) %>%
+        mutate(
+            value_bad    = !value %in% whitelist,
+            prefixed_bad = !prefixed_value %in% whitelist,
+            all_bad      = map2_lgl(value_bad, prefixed_bad, all)
+        ) %>%
         group_by(line, data, pvl_form) %>%
-        filter(all(!value_ok)) %>%
+        filter(all(all_bad)) %>%
         group_by(line, data) %>%
-        summarise(orphaned_pvls = paste0(unique(pvl_form), collapse = ", "))
+        summarise(orphaned_pvls = paste0(unique(pvl_form), collapse = ", ")) %>%
+        I()
 
 }
 
