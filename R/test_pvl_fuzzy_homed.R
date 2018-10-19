@@ -32,7 +32,8 @@ test_pvl_fuzzy_homed <- function(wlp_lexicon) {
         whitelist,
         # Remove all non-alphabetic characters
         whitelist %>% str_remove_all("[^a-z|A-Z]+") %>% unique()
-    )
+    ) %>%
+    str_trim()
 
     # append preverbs to start of parent verb
     # see https://github.com/CoEDL/yinarlingi/issues/2
@@ -68,7 +69,7 @@ test_pvl_fuzzy_homed <- function(wlp_lexicon) {
                     pvl_form,
                     "-",
                     str_extract(me_start, use_wlp_regex("me_sse_value"))
-                ) %>% str_replace_all("-+", "-")
+                ) %>% str_replace_all("-+", "-") %>% str_remove_all("\\*\\d\\*") %>% str_trim()
         ) %>%
         unnest() %>%
         mutate(
