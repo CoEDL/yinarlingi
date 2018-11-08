@@ -32,6 +32,7 @@ Nt,Nominal of Temporal subcategory
 PRT,Particle
 PN,Proper noun
 PV,Preverb
+PVa,Adverbial Preverb
 SFX,Suffix
 V,Verb
 V-ENCL,Enclitic to Verb
