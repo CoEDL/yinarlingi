@@ -1,0 +1,49 @@
+---
+title: "Git workflow summary"
+author: "Ellison Luk"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Vignette Title}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+This summary assumes that you have either read the [Tutorial](https://coedl.github.io/yinarlingi/articles/wlp-git_workflow.html) or already know some of the basics of Git, but need a quick side reference.  Please refer to the full tutorial (and accompanying [problem-solving tutorial](https://coedl.github.io/yinarlingi/articles/wlp-git_problemsolving.html)) for an in-depth guide to each step of the process.
+
+### Step 0
+`Refresh` remote status, and `pull` down the latest `development` branch from `origin/development`.
+
+### Step 1
+`Branch` away from `development` into a `feature` branch, e.g. 'fix-reversals'
+
+### Step 2
+On your `feature` branch, make changes to your files and save. Make sure you are working 'one stage/issue per `commit`'.
+
+### Step 3 `Commit` changes
+Commit changes to your `feature` branch. Summarise your changes succinctly in the textbox. Make sure "Push changes immediately to..." is left **unchecked**.
+
+### Repeat Steps 2 to 3 as necessary
+Remember! You will be looking back at your work through each `commit`, so make sure each `commit` is coherent.
+
+### Step 4 Merging: `Checkout` `development` branch
+Switch to the `development` branch by right-clicking on it and selecting `checkout`.
+
+### Step 5 Merging: `Pull` again
+`Refresh` remote status, and (if there are any `Pulls` flagged) `pull` down the latest `development` branch from `origin/development`.
+
+### Step 6 Merging: Select `Merge`
+`Merge` your changes from `feature` branch into `development` branch by right-clicking on the `feature` branch and selecting `Merge`. If there are no conflicts, you'll be able to do Step 8.
+
+### Step 7 Resolving conflicts
+If there are conflicts, you can find them by searching for the `<<<<<<< HEAD` text inside the file(s). Fix them, then save the file. Then, commit the resolved file(s) to the `development` branch as per Step 3.
+
+### Step 8 `Push`
+Push your local `development` branch up to `origin/development`.
+
+### Step 9 Delete feature `branch`
+After having merged it into `development`, right-click on the `branch` you wish to delete and select `Delete`. 
+
+### Repeat Steps 0 to 9 as necessary
+Once the `development` branch has reached a certain stage of completeness, you may `merge` it back into `master` branch (after consultation with other team members).

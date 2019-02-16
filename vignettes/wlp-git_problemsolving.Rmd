@@ -9,11 +9,18 @@ vignette: >
     %\VignetteEncoding{UTF-8}
 ---
 
-## Resolving Merge Conflicts
+## Overview
+
+Inevitably your workflow will be interrupted by problems. This tutorial will show you how to deal with the ones you will most likely come across:
+* merge conflicts
+* commits to be undone
+* changes to be stashed
+
+## How to Resolve Merge Conflicts
 
 A `merge conflict` arises when you try to `merge` two branches with contradictory lines, which may arise when two collaborators edit the same line. This can be avoided if your team is clear on what lines each member is working on, but Sourcetree allows you to fix them before completing the merge.
 
-As an example, let's make one edit: changing one \xme line to a \syn line, and commit that (in a `fix-xme` branch)
+As an example, let's make one edit: change one \xme line to a \syn line, and commit that (in a `fix-xme` branch)
 
 ![Commit change](figures/git-ps_merge-conflict/sourcetree_conflict-01.png)
 
@@ -28,12 +35,12 @@ Now attempt to merge the `fix-xme` branch into `development branch.
 ![Merge](figures/git-ps_merge-conflict/sourcetree_conflict-05.png)
 ![Confirm Merge](figures/git-ps_merge-conflict/sourcetree_conflict-06.png)
 
-Sourcetree has detected a conflict, and has flagged the conflicts in the files. You can follow the window's advice to resolve them with Sourcetree, but you can also do it in the text editor.
+Sourcetree has detected a conflict, and has flagged them in the files. You can follow the window's advice to resolve them with Sourcetree, but you can also do it in the text editor.
 
 ![Conflict detected](figures/git-ps_merge-conflict/sourcetree_conflict-07.png)
 ![Resolve conflicts menu](figures/git-ps_merge-conflict/sourcetree_conflict-08.png)
 
-Let's resolve them in the text editor. Open the file with the detected conflicts and search for "<<<<<<< HEAD". Each conflict will have this open tag (`HEAD` refers to the remote version; i.e. the version that your collaborator(s) created). The closing tag will be labelled with your branch: the version that you created and are trying to merge with.
+Let's resolve them in the text editor. Open the file with the detected conflicts and search for the text "<<<<<<< HEAD". Each conflict will have this as an opening tag (`HEAD` refers to the remote version; i.e. the version that your collaborator(s) created). The closing tag will be labelled with the branch: the version that you created and are trying to merge with.
 
 ![Resolve conflict in text](figures/git-ps_merge-conflict/sourcetree_conflict-09.png)
 
@@ -76,7 +83,7 @@ Alternatively, you can do a "hard reset" of the branch. Select the `commit` you 
 
 ## Stashing Changes
 
-`Stashing` your changes is the alternative "saving" method of `committing`: you stow away the changes you have made without contributing them to the `branch`. This is necessary when you're switching between branches.
+`Stashing` your changes is an alternative "saving" method of `committing`: you stow away the changes you have made without contributing them to the `branch`. This is necessary when you're switching between branches but don't want to `commit` something incomplete.
 
 Select `Stash` on your uncommitted changes.
 
