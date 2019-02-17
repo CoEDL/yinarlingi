@@ -25,6 +25,7 @@ Nk,Nominal of Kin subcategory
 Nk-,Dependent Kin Nominal stem
 Nk-SFX,Suffix on Kin Nominal
 Np,Nominal of Pronominal subcategory
+Np-DAT-SFX,Suffix on Dative Case-marked Nominal of Pronominal subcategory
 Np-SFX,Suffix on Nominal of Pronominal subcategory
 Nq,Nominal of Question/Quantifier subcategory
 Nq-ERG,Ergative Case-marked Nominal of Question/Quantifier subcategory
@@ -33,6 +34,7 @@ PRT,Particle
 PN,Proper noun
 PV,Preverb
 PVa,Adverbial Preverb
+PV-ENCL,Enclitic to Preverb
 SFX,Suffix
 V,Verb
 V-ENCL,Enclitic to Verb
