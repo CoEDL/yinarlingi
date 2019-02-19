@@ -96,3 +96,8 @@ test_code1_ordered(invalid_lexicon_path) %>%
     knitr::kable() # For pretty display of table
 ```
 
+<hr>
+
+<center>
+<img src="man/figures/coedl.png" width="350px" style="margin:auto" align="center">
+</center>

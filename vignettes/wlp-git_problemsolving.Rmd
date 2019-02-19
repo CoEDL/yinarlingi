@@ -28,6 +28,7 @@ Checkout `development` branch, refresh the repository status and pull the latest
 
 ![Checkout development](figures/git-ps_merge-conflict/sourcetree_conflict-02.png)
 ![Refresh status](figures/git-ps_merge-conflict/sourcetree_conflict-03.png)
+
 ![Pull branch](figures/git-ps_merge-conflict/sourcetree_conflict-04.png)
 
 Now attempt to merge the `fix-xme` branch into `development branch. 

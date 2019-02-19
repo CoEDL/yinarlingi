@@ -3,7 +3,10 @@ Type: Package
 Title: Validation Functions for the Warlpiri Dictionary
 Version: 0.1.0
 Authors@R: c(person("Nay", "San", role = c("aut", "cre"),
-                     email = "nay.san@anu.edu.au"))
+                     email = "nay.san@stanford.edu"),
+             person("Ellison", "Luk", role = c("aut"),
+                    email = "ellison.luk@kuleuven.be")
+             )
 Maintainer: Nay San <nay.san@anu.edu.au>
 Description: Set of data testing and processing functions used by the Warlpiri Dictionary Project.
 License: MIT + file LICENSE

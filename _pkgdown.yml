@@ -32,14 +32,14 @@ navbar:
     href: articles/yinarlingi.html
   - text: Reference
     menu:
+      - text: Git workflow summary
+        href: articles/wlp-git_summary.html
       - text: Dictionary structures
         href: articles/wlp-structures.html
       - text: Tests, Views, & Helpers
         href: reference/index.html
   - text: Articles
     menu:
-      - text: Introduction
-        href: articles/yinarlingi.html
       - text: Set up (software and accounts)
         href: articles/wlp-setup.html
       - text: Git workflow tutorial

@@ -12,6 +12,8 @@ vignette: >
 ## Overview
 This summary assumes that you have either read the [Tutorial](https://coedl.github.io/yinarlingi/articles/wlp-git_workflow.html) or already know some of the basics of Git, but need a quick side reference.  Please refer to the full tutorial (and accompanying [problem-solving tutorial](https://coedl.github.io/yinarlingi/articles/wlp-git_problemsolving.html)) for an in-depth guide to each step of the process.
 
+[Download cheatsheet PDF](figures/wlp-git-workflow-cheatsheet.pdf)
+
 ### Step 0
 `Refresh` remote status, and `pull` down the latest `development` branch from `origin/development`.
 
