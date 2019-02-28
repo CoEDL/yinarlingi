@@ -1,5 +1,5 @@
 ---
-title: "Git workflow tutorial"
+title: "Git workflow tutorial (step-by-step)"
 author: "Ellison Luk"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -11,11 +11,19 @@ vignette: >
 
 ## Overview
 
-This tutorial will show you how to use Git and Sourcetree to oversee your project's workflow.
+This tutorial will show you how to use Git and Sourcetree to oversee your project's workflow. 
 
-The upshot of using Git is that you are able to work on your own part of the project **in parallel** with other members of your team, without worrying about conflicting versions of the project. To do this, each member of the team works on their own part of the project on their own `branch`: the `master branch` is the "trunk" of the project, and each `feature branch` is an offshoot where team members can work on some aspect in detail. Once work on these `feature branches` has been completed, they are merged back into the `master branch` (either directly, or via other `feature branches`). This way, work on the project can be compartmentalised while minimalising conflicts and localising the changes. 
+Using Git allows each member to work on their own part of the project **in parallel** with other members of your team, without worrying about conflicting versions. 
+
+The analogy goes like this: 
+
+  * the `master` branch is the "trunk" of the project - no changes are directly made here
+  * each `feature` branch is an offshoot where individual members can work on some aspect in detail - once their purpose is fulfilled, they can be merged back into the `master` branch (either directly, or via other `feature` branches)
+
+This way, work can be compartmentalised while minimalising conflicts and localising each member's changes, making the process easily accountable for each member.
 
 From the Setup tutorial, you will have been able to `clone` the repository into your own machine. We will now go through how you can go about making changes.
+
 
 ## Step 0: `Refresh` and `Pull`
 
@@ -34,9 +42,11 @@ For the tutorial, you can just select the `Pull` icon and confirm it on the pop-
 ![Select Pull](figures/git-wf_step-0/sourcetree_pull-1.png)
 ![Confirm Pull](figures/git-wf_step-0/sourcetree_pull-2.png)
 
-## Step 1: `Check out` and create branches
+## Step 1: `Checkout` and create branches
 
-A `branch` is an instantiation of the repository that you can make changes on, without affecting the rest of the project. This project already has `remote branches` (they are not tracked by Sourcetree yet), which we can pull to make them `local`ly available. Moving from one `branch` to another is known as a `checkout`. 
+A `branch` is an instantiation of the repository that allows you to make changes separate from other `branches`. 
+
+This project already has `remote` branches (they are not tracked by our Sourcetree yet), which we can pull to make them `local`ly available. Moving from one `branch` to another is known as a `checkout`. 
 
 On the left side pane, select `Remotes`, `origin`, and then double-click `development`. A window will pop up confirming that you would like to `Checkout New Branch`. Selecting `OK` with the box ticked, this will create a new `local` branch called `development`, which will have all the developments and changes from that branch on your computer.
 
@@ -47,7 +57,7 @@ On the left side pane, select `Remotes`, `origin`, and then double-click `develo
 
 Now, let's create a new `branch` from this `development` branch. To create a new `branch`, select the `branch` icon: give it a useful name that tells us exactly what it is for (we will use `fix-reversals`), and confirm. Your new branch will now appear on the left under your list of branches. You will now also see on the `log` that a new branch has been created.
 
-Keep in mind that you should still try to minimise conflicts with other members of the team by restricting the scope of your changes to a single issue (e.g. only dealing with gloss lines in a dictionary file). Though conflicts will be inevitable, you can effectively pre-empt them by just sticking to your own part of the project!
+Keep in mind that you should still try to minimise conflicts with other members of the team by restricting the scope of your changes to a single issue (in our case: only dealing with gloss lines in a dictionary file). Though some conflicts will be inevitable, you can pre-empt them effectively by just sticking to your own parts of the project.
 
 ![Select Branch](figures/git-wf_step-1/sourcetree_branch-1.png)
 ![Confirm Branch](figures/git-wf_step-1/sourcetree_branch-2.png)
@@ -55,9 +65,9 @@ Keep in mind that you should still try to minimise conflicts with other members 
 
 ## Step 2 Make changes
 
-Now you can start to make changes to the file(s) in your repository. When you `cloned` your repository, you should have put it somewhere in your directory. **The `branch` you are currently on is the version of the repository that you can access.** If you checkout another branches, then the files will change accordingly. 
+Now you can start to make changes to the file(s) in your repository. When you `cloned` your repository, you should have put it somewhere in your directory. **The `branch` you are currently on is the version of the repository that you can access.** If you `checkout` other branches, then the files will change accordingly.
 
-You can access your repository conveniently by clicking `Explorer`. 
+You can directly access the folder of your repository by clicking `Explorer`. 
 
 ![Click Explorer](figures/git-wf_step-2/sourcetree_explorer.png)
 ![Repository Folder](figures/git-wf_step-2/mini-wlp_folder.png)
@@ -75,11 +85,11 @@ We have `\gl` lines to indicate the gloss of a Warlpiri word, and `\rv` lines to
 Of course, you can do this line-by-line, but you can also use script to help you out. How you can do this will be covered in another tutorial, but if you find yourself involved in reading or writing script, note the following:
 
 * ensure the script is labelled clearly
-* you can probably deduce what a script is doing by looking at the comments. (the green text prefaced by `#`).
+* you can probably deduce what a script is doing by looking at the comments (green text prefaced by `#`).
 
 ![Using script to do mass changes](figures/git-wf_step-2/lex_change-3.png)
 
-It is usually helpful to keep a track of your changes as you are making them. [DiffMerge](https://sourcegear.com/diffmerge/) is a great desktop tool for this: simply supply the old file and the changed file, and it will show you what the changes are (this is called a `diff`). There are also online tools for doing this on the fly (copying and pasting chunks of text).
+It is helpful to keep a track of your changes as you are making them. [DiffMerge](https://sourcegear.com/diffmerge/) is a great desktop tool for this: simply supply the old file and the changed file, and it will show you what the differences are (this is called a `diff`). There are also online tools for doing this on the fly (copying and pasting chunks of text).
 
 ![Diffing changes](figures/git-wf_step-2/lex_change-4.png)
 
@@ -88,13 +98,13 @@ Once you have completed your changes for the day (or for the entire issue), make
 ![Script file](figures/git-wf_step-2/save_changes-2.png)
 ![Lexicon file](figures/git-wf_step-2/save_changes-1.png)
 
-After we have finished making our changes, we can bring all our changes from the test file into the master file.
+After you have finished making our changes, you can bring all our changes from the test file into the master file.
 
 ## Step 3 `Commit` changes
 
-When you have finished applying your changes to the branch, you should now `commit` these changes: i.e. confirm the contribution you wish to make to the `branch`. You can think of `committing` your changes as like an extra layer of "saving". 
+A `commit` is a saved state of the `branch`. By dividing your work up into stages that are summarised by single `commits`, you can keep track of what your work progress. 
 
-Return to your Sourcetree window and you will see that the log records that there are `Uncommitted changes`. Head to `File Status`.
+Return to your Sourcetree window and you will see that the log records that there are `Uncommitted changes` (i.e. the changes we made in Step 2). Head to `File Status`.
 
 ![Uncommitted changes](figures/git-wf_step-3/sourcetree_uncommitted.png)
 
@@ -114,45 +124,57 @@ You will now see your commit on the `log`!
 
 ![Commit Created](figures/git-wf_step-3/sourcetree_commit-2.png)
 
-## Step 4 `Checkout` `development` branch 
+When you are working on your own, you will be cycling through steps 2 and 3 until the aims set out by the `feature` branch has been fulfilled. From there, you may proceed with the steps set out by the rest of the tutorial.
 
-Our `fix-reversals` branch is now one commit ahead of `development` (where we branched off from in the first place). You may do as many commits as you wish on this `fix-reversals` branch, but eventually, it must merge back into the other branches. To do this, we first checkout the `development` branch.
+## Step 4 Merging: `Checkout` `development` branch 
+
+Our `fix-reversals` branch is now one commit ahead of `development` (where we branched off from in Step 1). Once you have completed your work on this branch, it is time to merge back into the main `branch`. 
+
+To merge, we first checkout the `development` branch.
 
 ![Checkout development](figures/git-wf_step-4/sourcetree_checkout-1.png)
 ![Checkout successful](figures/git-wf_step-4/sourcetree_checkout-2.png)
 
-## Step 5 `Pull` again
+## Step 5 Merging: `Pull` again
 
-Refresh your repository status. Sourcetree will let you know if there is anything new to pull (in our case, nothing).
+Refresh your repository status. Sourcetree will let you know if there is anything new to pull (in our case, nothing - but if someone else has been working on the `development` branch in the meantime, there may be new commits to `pull`).
 
 ![Refresh Repository Status](figures/git-wf_step-5/sourcetree_refresh-status.png)
 ![Pull again](figures/git-wf_step-5/sourcetree_pull.png)
 
-## Step 6 `Merging` branches
+## Step 6 Merging: Select `Merge`
 
-Now we will `merge` our two branches together: the changes in `fix-reversals` will now appear in `development`. If you did not need to pull anything in the last step, then this should run without any conflicts. 
+Now we will `merge` our two branches: the changes in `fix-reversals` will now appear in `development`. If you did not need to pull anything in the last step, then this should run without any conflicts. 
 
-![Merge feature into development](figures/git-wf_step-6/sourcetree_merge-1.png)
+![Merge feature branch into development branch](figures/git-wf_step-6/sourcetree_merge-1.png)
 ![Confirm merge](figures/git-wf_step-6/sourcetree_merge-2.png)
 ![Merge successful](figures/git-wf_step-6/sourcetree_merge-3.png)
 
+## Step 7 Resolving conflicts
+
+If someone did make their own changes to `development` in the meantime, there may now be conflicts between their version and yours. Git will flag all the conflicts. Refer to the Git problem-solving tutorial on how to resolve merge conflicts. 
+
 ## Step 8 `Push`
 
-Now we are ready to `push` our files into the remote repository. Select `Push` and a popup window will ask you which branches you want to push. If you would like your `feature branch` to be available to our collaboraters, you may select that to be pushed to a remote branch of the same name. 
+Now we are ready to `push` our files back into the remote repository (where `pull`ed in Step 0). Select `Push` and a popup window will ask you which `branches` you want to `push`. If you would like your `feature` branch to be available to your collaborators, you may select that to be pushed to a remote branch of the same name. 
 
-For our purposes, since our work has been merged into the `development` branch, we can simply select that.
+In this case, since all our work has already been merged into the `development` branch, we can simply select `development`.
 
 ![Select Push](figures/git-wf_step-7/sourcetree_push-1.png)
 ![Select branches to push](figures/git-wf_step-7/sourcetree_push-2.png)
 ![Confirm Push](figures/git-wf_step-7/sourcetree_push-3.png)
 
-## Step 9 Delete `branch`
+## Step 9 Delete feature `branch`
 
-If you did not `push` your feature branch (`fix-reversals`), and you have no use for it any more, you may now `delete` it. 
+If you did not `push` your `feature` branch (`fix-reversals`), and you have no use for it any more, you may `delete` it. 
 
-You cannot `delete` a branch that you are still on, so make sure you are on the `development` branch (or any other branch) when you `delete` your feature branch.
+NOTE: If you `pushed` your `feature` branch (as in Step 8), `deleting` your branch will only `delete` it *locally* (on your machine): it will make no difference to the branch on the remote repository. To `delete` a remote branch requires a `force delete`, which is very dangerous since this will affect how your collaborators use that branch - always discuss with them before `deleting` remote branches. 
+
+You cannot `delete` a branch that you are still on, so make sure you are on the `development` branch (or any other branch) when you `delete` the `feature` branch.
 
 ![Select Delete](figures/git-wf_step-8/sourcetree_delete-branch-1.png)
 ![Confirm Delete](figures/git-wf_step-8/sourcetree_delete-branch-2.png)
 
-If you have `pushed` your feature branch, `deleting` your branch will only `delete` it *locally*: it will make no difference to the remote branch of the same name. `Deleting` a remote branch will require a `force delete`, which is very dangerous since this will affect how your collaborators use that branch.
+## Beyond
+
+You (and your team members) will cycle through steps 0 to 9 until the `development` branch has reached a certain stage of completion. When that happens, your team may consider merging `development` into the `master` branch. This is basically the same process as set out in Steps 4 to 6: `checkout` the `master` branch, right-click `development` and select `Merge`. **There should be no conflicts** as no one should have been working directly on the `master` branch. 

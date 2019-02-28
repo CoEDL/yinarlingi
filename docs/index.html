@@ -8,8 +8,8 @@
 <title>Validation Functions for the Warlpiri Dictionary • yinarlingi</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="Validation Functions for the Warlpiri Dictionary">
 <meta property="og:description" content="Set of data testing and processing functions used by the Warlpiri Dictionary Project.">
 <meta name="twitter:card" content="summary">
@@ -47,6 +47,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/wlp-git_summary.html">Git workflow summary</a>
+    </li>
+    <li>
       <a href="articles/wlp-structures.html">Dictionary structures</a>
     </li>
     <li>
@@ -62,9 +65,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/yinarlingi.html">Introduction</a>
-    </li>
-    <li>
       <a href="articles/wlp-setup.html">Set up (software and accounts)</a>
     </li>
     <li>
@@ -107,17 +107,15 @@
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p>The purpose of yinarlingi is to provide a set of convenience functions for validating Warlpiri dictionary data. Essentially, it pre-configures various functions from the <a href="https://coedl.github.io/tidylex/">tidylex</a> and <a href="https://www.tidyverse.org/">tidyverse</a> packages with parameters specific to the Warlpiri dictionary data, so that those within the Warlpiri dictionary project can quickly run and re-run frequently used routines (e.g. data validation, derived views), and also so that these tests can be run in a Continuous Testing/Continuous Deployment environment such as <a href="https://docs.gitlab.com/ee/ci/">GitLab pipelines</a>:</p>
-<div class="figure">
-<img src="reference/figures/pipeline.png">
-</div>
+<p><img src="reference/figures/pipeline.png"></p>
 <p>Yinarlingi is a Warlpiri word for echidna.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install yinarlingi from GitHub with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"CoEDL/yinarlingi"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"CoEDL/yinarlingi"</span>)</a></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
@@ -165,13 +163,13 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 ...
 </pre>
 <p>The yinarlingi test suite uses the <code><a href="reference/test_code1_ordered.html">test_code1_ordered()</a></code> function to catch such cases (notice <code>code1_ok</code> is <code>FALSE</code> on the third line):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(yinarlingi)
-
-<span class="co"># Get local path to the yinarlingi-provided file, 'wlp-lexicon_invalid-sequence.txt'</span>
-invalid_lexicon_path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata/wlp-lexicon_invalid-sequence.txt"</span>, <span class="dt">package =</span> <span class="st">"yinarlingi"</span>)
-
-<span class="kw"><a href="reference/test_code1_ordered.html">test_code1_ordered</a></span>(invalid_lexicon_path) <span class="op">%&gt;%</span>
-<span class="st">    </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>() <span class="co"># For pretty display of table</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(yinarlingi)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># Get local path to the yinarlingi-provided file, 'wlp-lexicon_invalid-sequence.txt'</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">invalid_lexicon_path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata/wlp-lexicon_invalid-sequence.txt"</span>, <span class="dt">package =</span> <span class="st">"yinarlingi"</span>)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw"><a href="reference/test_code1_ordered.html">test_code1_ordered</a></span>(invalid_lexicon_path) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="st">    </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>() <span class="co"># For pretty display of table</span></a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">me_start</th>
@@ -260,6 +258,7 @@ invalid_lexicon_path &lt;-<span class="st"> </span><span class="kw">system.file<
 <ul class="list-unstyled">
 <li>
 <a href="https://resunay.com">Nay San</a> <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Ellison Luk <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -269,7 +268,7 @@ invalid_lexicon_path &lt;-<span class="st"> </span><span class="kw">system.file<
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://resunay.com">Nay San</a>.</p>
+  <p>Developed by <a href="https://resunay.com">Nay San</a>, Ellison Luk.</p>
 </div>
 
 <div class="pkgdown">

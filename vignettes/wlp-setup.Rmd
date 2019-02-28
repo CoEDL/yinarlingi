@@ -36,7 +36,8 @@ Lastly, if you do not already have a strong preference for a text editor (e.g. T
 
 ### Windows
 
-[EL TO DO]
+1. In your Downloads folder (or where you chose to download the file), you will see an application file named something along the lines of `Sublime Text Build 3176 x64 Setup.exe`. Open the setup wizard and follow the instructions to install it in your `Porgram Files`. Once complete, click `Finish`.
+2. The program will be available in your `Start Menu`, and wherever you decide to create a shortcut. Click on the `Sublime Text` icon to launch it.
 
 ## SSH key generation
 

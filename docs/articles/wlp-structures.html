@@ -8,8 +8,8 @@
 <title>Warlpiri dictionary structures • yinarlingi</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Warlpiri dictionary structures">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -47,6 +47,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/wlp-git_summary.html">Git workflow summary</a>
+    </li>
+    <li>
       <a href="../articles/wlp-structures.html">Dictionary structures</a>
     </li>
     <li>
@@ -62,9 +65,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/yinarlingi.html">Introduction</a>
-    </li>
-    <li>
       <a href="../articles/wlp-setup.html">Set up (software and accounts)</a>
     </li>
     <li>
@@ -98,7 +98,7 @@
       <h1>Warlpiri dictionary structures</h1>
                         <h4 class="author">Nay San</h4>
             
-            <h4 class="date">2018-08-16</h4>
+            <h4 class="date">2019-02-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/coedl/yinarlingi/blob/master/vignettes/wlp-structures.Rmd"><code>vignettes/wlp-structures.Rmd</code></a></small>
       <div class="hidden name"><code>wlp-structures.Rmd</code></div>
@@ -169,12 +169,12 @@
 </tr>
 <tr class="odd">
 <td align="left">et</td>
-<td align="left">English translation of a </td>
+<td align="left">English translation of a we field</td>
 <td align="left">et; ewe</td>
 </tr>
 <tr class="even">
 <td align="left">et</td>
-<td align="left">English translation of a </td>
+<td align="left">English translation of a wed field</td>
 <td align="left">et; ewed</td>
 </tr>
 <tr class="odd">
@@ -189,7 +189,7 @@
 </tr>
 <tr class="odd">
 <td align="left">lat</td>
-<td align="left">Latin Name</td>
+<td align="left">Latin Name (updated in 2016)</td>
 <td align="left">lat; elat</td>
 </tr>
 <tr class="even">
@@ -208,121 +208,116 @@
 <td align="left">eme</td>
 </tr>
 <tr class="odd">
-<td align="left">nlat</td>
-<td align="left">contains up-to-date (2016) corrected Latin names of plants/animals</td>
-<td align="left">nlat; enlat</td>
-</tr>
-<tr class="even">
 <td align="left">note</td>
 <td align="left">marks a note to compiler to check data</td>
 <td align="left">note; enote</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">org</td>
 <td align="left">information about a word’s origin</td>
 <td align="left">org; eorg</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pdx</td>
 <td align="left">start of a block for a paradigm example</td>
 <td align="left">pdx</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">epdx</td>
 <td align="left">end of a block for a paradigm example</td>
 <td align="left">epdx</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pdxs</td>
 <td align="left">start of a block for a paradigm example</td>
 <td align="left">pdxs</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">epdxs</td>
 <td align="left">end of a block for a paradigm example</td>
 <td align="left">epdxs</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pvl</td>
 <td align="left">list of Preverbs that have been cited with verb in main entry</td>
 <td align="left">pvl; epvl</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ref</td>
 <td align="left">reference to relevant work, often bibliographic reference</td>
 <td align="left">ref; eref</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">refa</td>
 <td align="left">used to refer to Appendices, Tables, etc.</td>
 <td align="left">refa; erefa</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rul</td>
 <td align="left">a label showing a grammatical or lexical rule or regular pattern that applies</td>
 <td align="left">rul; erul</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rv</td>
 <td align="left">reversal for making the English-to-Warlpiri finder list</td>
 <td align="left">rv; erv</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">se</td>
 <td align="left">start of a block for a sense within a main entry</td>
 <td align="left">se</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ese</td>
 <td align="left">end of a block for a sense within a main entry</td>
 <td align="left">ese</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">sse</td>
 <td align="left">start of a block for a subentry</td>
 <td align="left">sse</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">esse</td>
 <td align="left">end of a block for a subentry</td>
 <td align="left">esse</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">sub</td>
 <td align="left">start of a block for a sense within a subentry</td>
 <td align="left">sub</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">esub</td>
 <td align="left">end of a block for a sense within a subentry</td>
 <td align="left">esub</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">syn</td>
 <td align="left">list of synonyms</td>
 <td align="left">syn; esyn</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">we</td>
 <td align="left">Warlpiri example sentence</td>
 <td align="left">we</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">wed</td>
 <td align="left">Warlpiri definition or encyclopaedic information on headword</td>
 <td align="left">wed</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">xme</td>
 <td align="left">cross reference to a synonymous headword</td>
 <td align="left">xme; exme</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">xs</td>
 <td align="left">used to indicate additional sources for word</td>
 <td align="left">xs; exs</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">xsse</td>
 <td align="left">indicates that same as some subentry in meaning</td>
 <td align="left">xsse; exsse</td>
@@ -444,46 +439,58 @@
 <td align="left">Nominal of Pronominal subcategory</td>
 </tr>
 <tr class="odd">
+<td align="left">Np-DAT-SFX</td>
+<td align="left">Suffix on Dative Case-marked Nominal of Pronominal subcategory</td>
+</tr>
+<tr class="even">
 <td align="left">Np-SFX</td>
 <td align="left">Suffix on Nominal of Pronominal subcategory</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Nq</td>
 <td align="left">Nominal of Question/Quantifier subcategory</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Nq-ERG</td>
 <td align="left">Ergative Case-marked Nominal of Question/Quantifier subcategory</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Nt</td>
 <td align="left">Nominal of Temporal subcategory</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">PRT</td>
 <td align="left">Particle</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">PN</td>
 <td align="left">Proper noun</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">PV</td>
 <td align="left">Preverb</td>
 </tr>
+<tr class="odd">
+<td align="left">PVa</td>
+<td align="left">Adverbial Preverb</td>
+</tr>
 <tr class="even">
+<td align="left">PV-ENCL</td>
+<td align="left">Enclitic to Preverb</td>
+</tr>
+<tr class="odd">
 <td align="left">SFX</td>
 <td align="left">Suffix</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">V</td>
 <td align="left">Verb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">V-ENCL</td>
 <td align="left">Enclitic to Verb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">V-SFX</td>
 <td align="left">Suffix on Verb</td>
 </tr>
@@ -567,77 +574,77 @@ crossRefs       -&gt; "ant":? "cf":? "csl":? "pvl":? "syn":?
 <h1 class="hasAnchor">
 <a href="#regular-expressions" class="anchor"></a>Regular expressions</h1>
 <p>The list of regular expressions defined below can be retrieved using the <code><a href="../reference/use_wlp_regex.html">use_wlp_regex()</a></code> function, e.g. <code>str_extract(string = "\\me jaala (PV): (H,Wi,Y)", pattern = use_wlp_regex("me_sse_value"))</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wlp_regexes &lt;-<span class="st"> </span><span class="kw">list</span>(
-    <span class="dt">first_code =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"^</span><span class="ch">\\</span><span class="st">s*</span><span class="ch">\\\\</span><span class="st">([a-z]+)"</span>),
-
-    <span class="dt">last_code  =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span><span class="ch">\\\\</span><span class="st">([a-z]+)</span><span class="ch">\\</span><span class="st">s*$"</span>),
-
-    <span class="dt">all_codes  =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span><span class="ch">\\\\</span><span class="st">([a-z]+)"</span>),
-
-    <span class="co"># case I: '^cry'        -&gt; 'cry'</span>
-    <span class="co"># case 2: '^[cry]cried' -&gt; 'cry'</span>
-    <span class="dt">eng_parent  =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span>
-<span class="st">        (                   # match, either case I:</span>
-<span class="st">            </span><span class="ch">\\</span><span class="st">^                 # a caret character</span>
-<span class="st">            [^</span><span class="ch">\\</span><span class="st">s|</span><span class="ch">\\</span><span class="st">[|</span><span class="ch">\\</span><span class="st">)]+     # 1 or more, which are NOT a space, [, or ) character</span>
-<span class="st">        ) | (               # or, case II:</span>
-<span class="st">            </span><span class="ch">\\</span><span class="st">^                 # a caret character followed by</span>
-<span class="st">            </span><span class="ch">\\</span><span class="st">[.+?</span><span class="ch">\\</span><span class="st">]           # 1 or more of any characters between square brackets [...]</span>
-<span class="st">        )</span>
-<span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),
-
-    <span class="co"># '\me jaala (PV): (H,Wi,Y)'  -&gt; 'jaala'</span>
-    <span class="co"># '\sse jakarn-karri-mi (V):' -&gt; 'jakarn-karri-mi'</span>
-    <span class="dt">me_sse_value =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span>
-<span class="st">        (?&lt;=</span><span class="ch">\\\\</span><span class="st">(me|sse)</span><span class="ch">\\</span><span class="st">s)</span>
-<span class="st">        .+?                 # 1 or more of any character, up to</span>
-<span class="st">        (?=</span><span class="ch">\\</span><span class="st">s</span><span class="ch">\\</span><span class="st">([-|A-Z])   # a space, open parenthesis, an optional hyphen, and a capital letter</span>
-<span class="st">                            # i.e. part of speech, e.g. ' (N', ' (-V', etc.</span>
-<span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),
-
-    <span class="co"># '\gl' '\egl'</span>
-    <span class="dt">gloss_codes =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span>
-<span class="st">        </span><span class="ch">\\\\</span><span class="st">                # backslash code</span>
-<span class="st">        e?                  # optional e prefix</span>
-<span class="st">        gl                  # gloss</span>
-<span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),
-
-    <span class="co"># 'car, boat'     -&gt; c('car', 'boat')</span>
-    <span class="co"># 'of arm@, legs' -&gt; c('of arm@, legs')</span>
-    <span class="dt">gloss_delim =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span>
-<span class="st">        (?&lt;!@)              # negative lookbehind for '@' escape</span>
-<span class="st">        ,                   # comma</span>
-<span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),
-
-    <span class="co"># 'jaal(pa) (PV): (Y)'         -&gt; '(PV)'</span>
-    <span class="co"># 'jaaljaal(pa) (N) (PV): (Y)' -&gt; '(N) (PV)'</span>
-    <span class="dt">pos_chunk =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span>
-<span class="st">        </span><span class="ch">\\</span><span class="st">s                 # obligatory space!</span>
-<span class="st">        </span><span class="ch">\\</span><span class="st">(                 # open parenthesis</span>
-<span class="st">        -?[A-Z]             # uppercase character, optionally prefixed with '-'</span>
-<span class="st">        .*?                 # anything (non-greedy)</span>
-<span class="st">        </span><span class="ch">\\</span><span class="st">)                 # close parenthesis</span>
-<span class="st">        :                   # obligatory colon!</span>
-<span class="st">      "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),
-
-    <span class="co"># '(PV)'     -&gt; c('PV')</span>
-    <span class="co"># '(N) (PV)' -&gt; c('N', 'PV')</span>
-    <span class="co"># '(N,V)'    -&gt; c('N,V')</span>
-    <span class="dt">pos_value =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span>
-<span class="st">        </span><span class="ch">\\</span><span class="st">s                 # obligatory space!</span>
-<span class="st">        (?&lt;=</span><span class="ch">\\</span><span class="st">()            # open parenthesis, positive look-behind</span>
-<span class="st">        .*?                 # anything (non-greedy)</span>
-<span class="st">        (?=</span><span class="ch">\\</span><span class="st">))             # close parenthesis, positive look-ahead</span>
-<span class="st">        "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),
-
-    <span class="co"># '\[kn59]' '\[PPJ 10/87]'</span>
-    <span class="dt">source_codes =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">regex</a></span>(<span class="st">"</span>
-<span class="st">        </span><span class="ch">\\\\</span><span class="st">                # backslash code</span>
-<span class="st">        </span><span class="ch">\\</span><span class="st">[                 # open square bracket</span>
-<span class="st">        .*?                 # anything, non-greedy</span>
-<span class="st">        </span><span class="ch">\\</span><span class="st">]                 # close square bracket</span>
-<span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>)
-)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">wlp_regexes &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="dt">first_code =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"^</span><span class="ch">\\</span><span class="st">s*</span><span class="ch">\\\\</span><span class="st">([a-z]+)"</span>),</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="dt">last_code  =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span><span class="ch">\\\\</span><span class="st">([a-z]+)</span><span class="ch">\\</span><span class="st">s*$"</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">all_codes  =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span><span class="ch">\\\\</span><span class="st">([a-z]+)"</span>),</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="co"># case I: '^cry'        -&gt; 'cry'</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="co"># case 2: '^[cry]cried' -&gt; 'cry'</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="dt">eng_parent  =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">        (                   # match, either case I:</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">            </span><span class="ch">\\</span><span class="st">^                 # a caret character</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">            [^</span><span class="ch">\\</span><span class="st">s|</span><span class="ch">\\</span><span class="st">[|</span><span class="ch">\\</span><span class="st">)]+     # 1 or more, which are NOT a space, [, or ) character</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">        ) | (               # or, case II:</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">            </span><span class="ch">\\</span><span class="st">^                 # a caret character followed by</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">            </span><span class="ch">\\</span><span class="st">[.+?</span><span class="ch">\\</span><span class="st">]           # 1 or more of any characters between square brackets [...]</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">        )</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">    <span class="co"># '\me jaala (PV): (H,Wi,Y)'  -&gt; 'jaala'</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">    <span class="co"># '\sse jakarn-karri-mi (V):' -&gt; 'jakarn-karri-mi'</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="dt">me_sse_value =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="st">        (?&lt;=</span><span class="ch">\\\\</span><span class="st">(me|sse)</span><span class="ch">\\</span><span class="st">s)</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">        .+?                 # 1 or more of any character, up to</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">        (?=</span><span class="ch">\\</span><span class="st">s</span><span class="ch">\\</span><span class="st">([-|A-Z])   # a space, open parenthesis, an optional hyphen, and a capital letter</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">                            # i.e. part of speech, e.g. ' (N', ' (-V', etc.</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">    <span class="co"># '\gl' '\egl'</span></a>
+<a class="sourceLine" id="cb3-30" data-line-number="30">    <span class="dt">gloss_codes =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span></a>
+<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="st">        </span><span class="ch">\\\\</span><span class="st">                # backslash code</span></a>
+<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="st">        e?                  # optional e prefix</span></a>
+<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="st">        gl                  # gloss</span></a>
+<a class="sourceLine" id="cb3-34" data-line-number="34"><span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">    <span class="co"># 'car, boat'     -&gt; c('car', 'boat')</span></a>
+<a class="sourceLine" id="cb3-37" data-line-number="37">    <span class="co"># 'of arm@, legs' -&gt; c('of arm@, legs')</span></a>
+<a class="sourceLine" id="cb3-38" data-line-number="38">    <span class="dt">gloss_delim =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span></a>
+<a class="sourceLine" id="cb3-39" data-line-number="39"><span class="st">        (?&lt;!@)              # negative lookbehind for '@' escape</span></a>
+<a class="sourceLine" id="cb3-40" data-line-number="40"><span class="st">        ,                   # comma</span></a>
+<a class="sourceLine" id="cb3-41" data-line-number="41"><span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb3-43" data-line-number="43">    <span class="co"># 'jaal(pa) (PV): (Y)'         -&gt; '(PV)'</span></a>
+<a class="sourceLine" id="cb3-44" data-line-number="44">    <span class="co"># 'jaaljaal(pa) (N) (PV): (Y)' -&gt; '(N) (PV)'</span></a>
+<a class="sourceLine" id="cb3-45" data-line-number="45">    <span class="dt">pos_chunk =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span></a>
+<a class="sourceLine" id="cb3-46" data-line-number="46"><span class="st">        </span><span class="ch">\\</span><span class="st">s                 # obligatory space!</span></a>
+<a class="sourceLine" id="cb3-47" data-line-number="47"><span class="st">        </span><span class="ch">\\</span><span class="st">(                 # open parenthesis</span></a>
+<a class="sourceLine" id="cb3-48" data-line-number="48"><span class="st">        -?[A-Z]             # uppercase character, optionally prefixed with '-'</span></a>
+<a class="sourceLine" id="cb3-49" data-line-number="49"><span class="st">        .*?                 # anything (non-greedy)</span></a>
+<a class="sourceLine" id="cb3-50" data-line-number="50"><span class="st">        </span><span class="ch">\\</span><span class="st">)                 # close parenthesis</span></a>
+<a class="sourceLine" id="cb3-51" data-line-number="51"><span class="st">        :                   # obligatory colon!</span></a>
+<a class="sourceLine" id="cb3-52" data-line-number="52"><span class="st">      "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-53" data-line-number="53"></a>
+<a class="sourceLine" id="cb3-54" data-line-number="54">    <span class="co"># '(PV)'     -&gt; c('PV')</span></a>
+<a class="sourceLine" id="cb3-55" data-line-number="55">    <span class="co"># '(N) (PV)' -&gt; c('N', 'PV')</span></a>
+<a class="sourceLine" id="cb3-56" data-line-number="56">    <span class="co"># '(N,V)'    -&gt; c('N,V')</span></a>
+<a class="sourceLine" id="cb3-57" data-line-number="57">    <span class="dt">pos_value =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span></a>
+<a class="sourceLine" id="cb3-58" data-line-number="58"><span class="st">        </span><span class="ch">\\</span><span class="st">s                 # obligatory space!</span></a>
+<a class="sourceLine" id="cb3-59" data-line-number="59"><span class="st">        (?&lt;=</span><span class="ch">\\</span><span class="st">()            # open parenthesis, positive look-behind</span></a>
+<a class="sourceLine" id="cb3-60" data-line-number="60"><span class="st">        .*?                 # anything (non-greedy)</span></a>
+<a class="sourceLine" id="cb3-61" data-line-number="61"><span class="st">        (?=</span><span class="ch">\\</span><span class="st">))             # close parenthesis, positive look-ahead</span></a>
+<a class="sourceLine" id="cb3-62" data-line-number="62"><span class="st">        "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb3-64" data-line-number="64">    <span class="co"># '\[kn59]' '\[PPJ 10/87]'</span></a>
+<a class="sourceLine" id="cb3-65" data-line-number="65">    <span class="dt">source_codes =</span> stringr<span class="op">::</span><span class="kw"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"</span></a>
+<a class="sourceLine" id="cb3-66" data-line-number="66"><span class="st">        </span><span class="ch">\\\\</span><span class="st">                # backslash code</span></a>
+<a class="sourceLine" id="cb3-67" data-line-number="67"><span class="st">        </span><span class="ch">\\</span><span class="st">[                 # open square bracket</span></a>
+<a class="sourceLine" id="cb3-68" data-line-number="68"><span class="st">        .*?                 # anything, non-greedy</span></a>
+<a class="sourceLine" id="cb3-69" data-line-number="69"><span class="st">        </span><span class="ch">\\</span><span class="st">]                 # close square bracket</span></a>
+<a class="sourceLine" id="cb3-70" data-line-number="70"><span class="st">    "</span>, <span class="dt">comments =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-71" data-line-number="71">)</a></code></pre></div>
 </div>
 <div id="blacklisted-characters" class="section level1">
 <h1 class="hasAnchor">
@@ -689,7 +696,7 @@ crossRefs       -&gt; "ant":? "cf":? "csl":? "pvl":? "syn":?
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://resunay.com">Nay San</a>.</p>
+  <p>Developed by <a href="https://resunay.com">Nay San</a>, Ellison Luk.</p>
 </div>
 
 <div class="pkgdown">

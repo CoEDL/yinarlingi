@@ -8,8 +8,8 @@
 <title>Git problem solving • yinarlingi</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Git problem solving">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -47,6 +47,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/wlp-git_summary.html">Git workflow summary</a>
+    </li>
+    <li>
       <a href="../articles/wlp-structures.html">Dictionary structures</a>
     </li>
     <li>
@@ -62,9 +65,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/yinarlingi.html">Introduction</a>
-    </li>
-    <li>
       <a href="../articles/wlp-setup.html">Set up (software and accounts)</a>
     </li>
     <li>
@@ -98,7 +98,7 @@
       <h1>Git problem solving</h1>
                         <h4 class="author">Ellison Luk</h4>
             
-            <h4 class="date">2018-08-16</h4>
+            <h4 class="date">2019-02-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/coedl/yinarlingi/blob/master/vignettes/wlp-git_problemsolving.Rmd"><code>vignettes/wlp-git_problemsolving.Rmd</code></a></small>
       <div class="hidden name"><code>wlp-git_problemsolving.Rmd</code></div>
@@ -107,21 +107,29 @@
 
     
     
-<div id="resolving-merge-conflicts" class="section level2">
+<div id="overview" class="section level2">
 <h2 class="hasAnchor">
-<a href="#resolving-merge-conflicts" class="anchor"></a>Resolving Merge Conflicts</h2>
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p>Inevitably your workflow will be interrupted by problems. This tutorial will show you how to deal with the ones you will most likely come across: * merge conflicts * commits to be undone * changes to be stashed</p>
+</div>
+<div id="how-to-resolve-merge-conflicts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-to-resolve-merge-conflicts" class="anchor"></a>How to Resolve Merge Conflicts</h2>
 <p>A <code>merge conflict</code> arises when you try to <code>merge</code> two branches with contradictory lines, which may arise when two collaborators edit the same line. This can be avoided if your team is clear on what lines each member is working on, but Sourcetree allows you to fix them before completing the merge.</p>
-<p>As an example, let’s make one edit: changing one line to a line, and commit that (in a <code>fix-xme</code> branch)</p>
+<p>As an example, let’s make one edit: change one line to a line, and commit that (in a <code>fix-xme</code> branch)</p>
 <div class="figure">
 <img src="figures/git-ps_merge-conflict/sourcetree_conflict-01.png" alt="Commit change"><p class="caption">Commit change</p>
 </div>
 <p>Checkout <code>development</code> branch, refresh the repository status and pull the latest changes (1 has been flagged).</p>
-<p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-02.png" alt="Checkout development"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-03.png" alt="Refresh status"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-04.png" alt="Pull branch"></p>
+<p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-02.png" alt="Checkout development"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-03.png" alt="Refresh status"></p>
+<div class="figure">
+<img src="figures/git-ps_merge-conflict/sourcetree_conflict-04.png" alt="Pull branch"><p class="caption">Pull branch</p>
+</div>
 <p>Now attempt to merge the <code>fix-xme</code> branch into `development branch.</p>
 <p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-05.png" alt="Merge"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-06.png" alt="Confirm Merge"></p>
-<p>Sourcetree has detected a conflict, and has flagged the conflicts in the files. You can follow the window’s advice to resolve them with Sourcetree, but you can also do it in the text editor.</p>
+<p>Sourcetree has detected a conflict, and has flagged them in the files. You can follow the window’s advice to resolve them with Sourcetree, but you can also do it in the text editor.</p>
 <p><img src="figures/git-ps_merge-conflict/sourcetree_conflict-07.png" alt="Conflict detected"><img src="figures/git-ps_merge-conflict/sourcetree_conflict-08.png" alt="Resolve conflicts menu"></p>
-<p>Let’s resolve them in the text editor. Open the file with the detected conflicts and search for “&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD”. Each conflict will have this open tag (<code>HEAD</code> refers to the remote version; i.e. the version that your collaborator(s) created). The closing tag will be labelled with your branch: the version that you created and are trying to merge with.</p>
+<p>Let’s resolve them in the text editor. Open the file with the detected conflicts and search for the text “&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD”. Each conflict will have this as an opening tag (<code>HEAD</code> refers to the remote version; i.e. the version that your collaborator(s) created). The closing tag will be labelled with the branch: the version that you created and are trying to merge with.</p>
 <div class="figure">
 <img src="figures/git-ps_merge-conflict/sourcetree_conflict-09.png" alt="Resolve conflict in text"><p class="caption">Resolve conflict in text</p>
 </div>
@@ -161,7 +169,7 @@
 <div id="stashing-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#stashing-changes" class="anchor"></a>Stashing Changes</h2>
-<p><code>Stashing</code> your changes is the alternative “saving” method of <code>committing</code>: you stow away the changes you have made without contributing them to the <code>branch</code>. This is necessary when you’re switching between branches.</p>
+<p><code>Stashing</code> your changes is an alternative “saving” method of <code>committing</code>: you stow away the changes you have made without contributing them to the <code>branch</code>. This is necessary when you’re switching between branches but don’t want to <code>commit</code> something incomplete.</p>
 <p>Select <code>Stash</code> on your uncommitted changes.</p>
 <div class="figure">
 <img src="figures/git-ps_stash/sourcetree_stash-1.png" alt="Select Stash"><p class="caption">Select Stash</p>
@@ -186,7 +194,8 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#resolving-merge-conflicts">Resolving Merge Conflicts</a></li>
+<li><a href="#overview">Overview</a></li>
+      <li><a href="#how-to-resolve-merge-conflicts">How to Resolve Merge Conflicts</a></li>
       <li><a href="#undoing-commits">Undoing Commits</a></li>
       <li><a href="#stashing-changes">Stashing Changes</a></li>
       </ul>
@@ -197,7 +206,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://resunay.com">Nay San</a>.</p>
+  <p>Developed by <a href="https://resunay.com">Nay San</a>, Ellison Luk.</p>
 </div>
 
 <div class="pkgdown">

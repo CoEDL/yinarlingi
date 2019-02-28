@@ -108,3 +108,11 @@ test_code1_ordered(invalid_lexicon_path) %>%
 |                                     |    4 | sharp                                                     | rv    | NA        | NA               |
 |                                     |    5 |                                                           | eg    | NA        | NA               |
 |                                     |    6 | Karlangu ka karri jampalypa ngulaju yiri-nyayirni. \[@@\] | we    | NA        | NA               |
+
+<hr>
+
+<center>
+
+<img src="man/figures/coedl.png" width="350px" style="margin:auto" align="center">
+
+</center>
