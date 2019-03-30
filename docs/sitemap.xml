@@ -64,10 +64,19 @@
     <loc>https://coedl.github.io/tidylex/reference/test_xrefs_homed.html</loc>
   </url>
   <url>
+    <loc>https://coedl.github.io/tidylex/reference/test_xrefs_noselfref.html</loc>
+  </url>
+  <url>
     <loc>https://coedl.github.io/tidylex/reference/use_wlp_regex.html</loc>
   </url>
   <url>
+    <loc>https://coedl.github.io/tidylex/reference/view_wlp_kinrev.html</loc>
+  </url>
+  <url>
     <loc>https://coedl.github.io/tidylex/reference/view_wlp_reversals.html</loc>
+  </url>
+  <url>
+    <loc>https://coedl.github.io/tidylex/reference/view_wlp_scirev.html</loc>
   </url>
   <url>
     <loc>https://coedl.github.io/tidylex/articles/wlp-git_problemsolving.html</loc>
