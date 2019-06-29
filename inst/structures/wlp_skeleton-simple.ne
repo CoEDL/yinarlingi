@@ -18,4 +18,4 @@ exampleBlock    -> "eg" "cm":* examplePair:+ "eeg"
 examplePair     -> ("we" | "wed") "et"
 
                    # Cross-reference codes listed in alphabetical order
-crossRefs       -> "ant":? "cf":? "csl":? "pvl":? "syn":?
+crossRefs       -> "alt":? "ant":? "cf":? "csl":? "pvl":? "syn":?
