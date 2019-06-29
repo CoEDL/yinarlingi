@@ -30,14 +30,15 @@ view_wlp_scirev <- function(wlp_lexicon) {
         mutate(
             Class = case_when(
                 str_detect(dm, "flora") ~ "Flora",
+                str_detect(dm, "fungus") ~ "Fungus",
                 str_detect(dm, "fauna") ~ "Fauna",
                 TRUE ~ "Other"
             ) %>%
-                factor(levels = c("Other", "Fauna", "Flora"))
+                factor(levels = c("Other", "Fauna", "Flora", "Fungus"))
         ) %>%
         mutate(
             Subclass = case_when(
-                Class != "Fauna"                           ~ "",
+                Class %in% c("Flora", "Fungus")            ~ "",
                 str_detect(dm, "(mammal|yumurru\\-kurlu)") ~ "Mammals",
                 str_detect(dm, "(mammal|yumurru\\-wangu)") ~ "Reptiles",
                 str_detect(dm, "(bird|jurlpu)")            ~ "Birds",
