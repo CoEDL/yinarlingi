@@ -2,9 +2,9 @@
 % Please edit documentation in R/test_images_ok.R
 \name{test_images_ok}
 \alias{test_images_ok}
-\title{Test that all listed images in Dropbox/WarlpiriDictionaryFiles2017/wlp-dictionary-illustrations}
+\title{Test that all listed images exist in Dropbox/warlpiri-lexicon-illustrations}
 \usage{
-test_images_ok(wlp_lexicon, file_list)
+test_images_ok(wlp_lexicon, file_list = "illustrations.txt")
 }
 \arguments{
 \item{wlp_lexicon}{a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file}
@@ -12,5 +12,5 @@ test_images_ok(wlp_lexicon, file_list)
 \item{file_list}{output of rclone file listing}
 }
 \description{
-Test that all listed images in Dropbox/WarlpiriDictionaryFiles2017/wlp-dictionary-illustrations
+Test that all listed images exist in Dropbox/warlpiri-lexicon-illustrations
 }

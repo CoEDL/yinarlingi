@@ -1,4 +1,4 @@
-#' Test that all listed images in Dropbox/WarlpiriDictionaryFiles2017/wlp-dictionary-illustrations
+#' Test that all listed images exist in Dropbox/warlpiri-lexicon-illustrations
 #'
 #' @param wlp_lexicon a Warlpiri lexicon data frame, or path to a Warlpiri dictionary file
 #' @param file_list output of rclone file listing
