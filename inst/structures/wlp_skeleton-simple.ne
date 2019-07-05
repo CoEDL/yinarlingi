@@ -9,7 +9,7 @@ subEntrySense   ->  "sub" entryBlock "esub"
 paradigmExample ->  "pdx" entryBlock "epdx"
                 |  "pdxs" entryBlock "epdxs"
 
-entryBlock       -> "org":? "dm":* "def":? "lat":? "gl":? "rv":? "cm":*
+entryBlock       -> "img":? "org":? "dm":* "def":? "lat":? "gl":? "rv":? "cm":*
                       (exampleBlock:+ | paradigmExample:+):?
                       crossRefs
 
