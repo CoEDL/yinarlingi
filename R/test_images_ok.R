@@ -6,7 +6,7 @@
 #' @export
 #'
 
-test_images_ok <- function(wlp_lexicon, file_list = "tmp/illustrations.txt") {
+test_images_ok <- function(wlp_lexicon, file_list = "illustrations.txt") {
 
     images_list <- readLines(file_list)
 
