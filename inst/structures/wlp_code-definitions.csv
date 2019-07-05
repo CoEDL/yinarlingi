@@ -13,7 +13,7 @@ et,English translation of a we field,et; ewe
 et,English translation of a wed field,et; ewed
 gl,"short, one word or simple phrase, glosses",gl; egl
 glo,"old gloss, kept for data provenance",glo; eglo
-img,"associated illustration or photo",eimg
+img,"associated illustration or photo",img; eimg
 lat,Latin Name (updated in 2016),lat; elat
 lato,"old Latin name, kept for data provenance",lato; elato
 me,start of a block for a main entry,me
