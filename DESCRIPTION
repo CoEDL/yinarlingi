@@ -27,6 +27,6 @@ Suggests:
     furrr,
     DT
 Remotes: coedl/tidylex
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 URL: https://github.com/coedl/yinarlingi
 BugReports: https://github.com/coedl/yinarlingi/issues

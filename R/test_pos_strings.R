@@ -23,7 +23,7 @@ test_pos_strings <- function(wlp_lexicon) {
 
             pos_expected = pos_found %>%
                 str_extract_all("\\(.*?\\)") %>%
-                map(~ str_extract_all(., "[A-Z|a-z|\\-|:]+") %>% map(~ paste0(., collapse = ", "))) %>%
+                map(~ str_extract_all(., "[A-Z|a-z|\\-|:]+") %>% map(~ paste0(., collapse = "+"))) %>%
                 map(~ paste0("(", ., ")")) %>%
                 map_chr(~ paste0(., collapse = " ")) %>%
                 paste("' ", ., ":'", sep = "") %>%
